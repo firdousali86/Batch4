@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, TextInput} from 'react-native';
 
 class MyTestComponent extends React.Component {
   render() {
@@ -8,6 +8,12 @@ class MyTestComponent extends React.Component {
     return (
       <View style={{backgroundColor: bgColor}}>
         <Text>Hello World</Text>
+        <TextInput
+          onChangeText={changedText => {
+            console.log(changedText);
+          }}
+          style={{backgroundColor: 'gray', height: 40}}
+        />
       </View>
     );
   }

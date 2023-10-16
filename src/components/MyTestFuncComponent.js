@@ -1,13 +1,20 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, TextInput} from 'react-native';
 
 const MyTestFuncComponent = props => {
-  const {bgColor} = props;
+  const {bgColor, score} = props;
 
   return (
     <View style={{backgroundColor: bgColor}}>
       <Text>Hello this is functional component</Text>
-      <Text>{props.score}</Text>
+      <Text>{score}</Text>
+
+      <TextInput
+        onChangeText={changedText => {
+          console.log(changedText);
+        }}
+        style={{backgroundColor: 'gray', height: 40}}
+      />
     </View>
   );
 };
