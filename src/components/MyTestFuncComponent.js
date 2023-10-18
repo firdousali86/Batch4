@@ -3,6 +3,7 @@ import {View, Text, TextInput, TouchableOpacity} from 'react-native';
 
 const MyTestFuncComponent = props => {
   const [mutableBGColor, setMutableBGColor] = useState(props.bgColor);
+  const [myTextInput, setMyTextInput] = useState('');
 
   const {score} = props;
 
@@ -15,10 +16,16 @@ const MyTestFuncComponent = props => {
       <Text>{score}</Text>
 
       <TextInput
+        value={myTextInput}
         onChangeText={changedText => {
-          console.log(changedText);
+          setMyTextInput(changedText);
         }}
-        style={{backgroundColor: 'gray', height: 40}}
+        style={{
+          height: 40,
+          borderWidth: 1,
+          borderColor: 'black',
+          backgroundColor: 'white',
+        }}
       />
 
       <TouchableOpacity
