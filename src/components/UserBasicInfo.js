@@ -2,8 +2,7 @@ import {} from 'react';
 import {View, Text, TextInput} from 'react-native';
 
 const UserBasicInfo = props => {
-  const {inputStyle, userData} = props;
-  const {firstName, lastName} = userData;
+  const {inputStyle, firstName, lastName} = props;
 
   return (
     <View>
