@@ -1,12 +1,20 @@
 import React from 'react';
-import {View, Text, TextInput} from 'react-native';
+import {View, Text, TextInput, TouchableOpacity} from 'react-native';
 
 class MyTestComponent extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      mutableBGColor: props.bgColor,
+    };
+  }
+
   render() {
-    const {bgColor} = this.props;
+    const {mutableBGColor} = this.state;
 
     return (
-      <View style={{backgroundColor: bgColor}}>
+      <View style={{backgroundColor: mutableBGColor}}>
         <Text>Hello World</Text>
         <TextInput
           onChangeText={changedText => {
@@ -14,6 +22,27 @@ class MyTestComponent extends React.Component {
           }}
           style={{backgroundColor: 'gray', height: 40}}
         />
+        <TouchableOpacity
+          onPress={() => {
+            //TO CHANGE THE COLOR
+            this.setState({mutableBGColor: 'blue'});
+          }}>
+          <Text>Press to blue</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            //TO CHANGE THE COLOR
+            this.setState({mutableBGColor: 'red'});
+          }}>
+          <Text>Press to red</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            //TO CHANGE THE COLOR
+            this.setState({mutableBGColor: 'orange'});
+          }}>
+          <Text>Press to orange</Text>
+        </TouchableOpacity>
       </View>
     );
   }

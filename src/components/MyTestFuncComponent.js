@@ -5,7 +5,7 @@ const MyTestFuncComponent = props => {
   const {bgColor, score} = props;
 
   return (
-    <View style={{backgroundColor: bgColor}}>
+    <View style={{backgroundColor: bgColor, height: 100}}>
       <Text>Hello this is functional component</Text>
       <Text>{score}</Text>
 
