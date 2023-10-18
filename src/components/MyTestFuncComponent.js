@@ -7,6 +7,8 @@ const MyTestFuncComponent = props => {
 
   const {score} = props;
 
+  console.log('MYFUNCTIONAL COMPONENT GOT RERENDERED');
+
   return (
     <View
       style={{
@@ -45,6 +47,12 @@ const MyTestFuncComponent = props => {
           setMutableBGColor('orange');
         }}>
         <Text>Change color to orange</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => {
+          setMutableBGColor(props.bgColor);
+        }}>
+        <Text>Change color to props color</Text>
       </TouchableOpacity>
     </View>
   );

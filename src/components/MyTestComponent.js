@@ -13,6 +13,7 @@ class MyTestComponent extends React.Component {
   }
 
   render() {
+    console.log('MYTESTCOMPONENT GOT RENDERED');
     //following is how we use the state in class component
     const {mutableBGColor, myTextInput} = this.state;
 

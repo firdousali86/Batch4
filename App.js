@@ -5,25 +5,16 @@
  * @format
  */
 
-import React from 'react';
-import {
-  Text,
-  View,
-  TextInput,
-  Image,
-  Button,
-  Alert,
-  ScrollView,
-  TouchableOpacity,
-  TouchableHighlight,
-  TouchableWithoutFeedback,
-  ActivityIndicator,
-} from 'react-native';
+import React, {useState} from 'react';
+import {Text, View, ScrollView, TouchableOpacity} from 'react-native';
 
 import MyTestComponent from './src/components/MyTestComponent';
 import MyTestFuncComponent from './src/components/MyTestFuncComponent';
 
 function App() {
+  const [selectedColor, setSelectedColor] = useState('');
+  console.log('APP GOT RENDERED');
+
   return (
     <View style={{flex: 1, marginTop: 90, marginHorizontal: 10}}>
       <ScrollView>
@@ -31,6 +22,19 @@ function App() {
 
         <MyTestComponent bgColor="pink" testKey="testValue" />
         <MyTestFuncComponent bgColor="yellow" score={99} />
+
+        <TouchableOpacity
+          onPress={() => {
+            setSelectedColor('red');
+          }}>
+          <Text>set to red</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            setSelectedColor('blue');
+          }}>
+          <Text>set to blue</Text>
+        </TouchableOpacity>
       </ScrollView>
     </View>
   );
