@@ -1,11 +1,16 @@
-import React from 'react';
-import {View, Text, TextInput} from 'react-native';
+import React, {useState} from 'react';
+import {View, Text, TextInput, TouchableOpacity} from 'react-native';
 
 const MyTestFuncComponent = props => {
-  const {bgColor, score} = props;
+  const [mutableBGColor, setMutableBGColor] = useState(props.bgColor);
+
+  const {score} = props;
 
   return (
-    <View style={{backgroundColor: bgColor, height: 100}}>
+    <View
+      style={{
+        backgroundColor: mutableBGColor,
+      }}>
       <Text>Hello this is functional component</Text>
       <Text>{score}</Text>
 
@@ -15,6 +20,25 @@ const MyTestFuncComponent = props => {
         }}
         style={{backgroundColor: 'gray', height: 40}}
       />
+
+      <TouchableOpacity
+        onPress={() => {
+          setMutableBGColor('red');
+        }}>
+        <Text>Change color to red</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => {
+          setMutableBGColor('blue');
+        }}>
+        <Text>Change color to blue</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => {
+          setMutableBGColor('orange');
+        }}>
+        <Text>Change color to orange</Text>
+      </TouchableOpacity>
     </View>
   );
 };
