@@ -8,21 +8,29 @@ class MyTestComponent extends React.Component {
     //following is how we initialize the state in class component
     this.state = {
       mutableBGColor: props.bgColor,
+      myTextInput: '',
     };
   }
 
   render() {
     //following is how we use the state in class component
-    const {mutableBGColor} = this.state;
+    const {mutableBGColor, myTextInput} = this.state;
 
     return (
       <View style={{backgroundColor: mutableBGColor}}>
         <Text>Hello World</Text>
         <TextInput
+          placeholder="my placeholder"
+          value={myTextInput}
           onChangeText={changedText => {
-            console.log(changedText);
+            this.setState({myTextInput: changedText});
           }}
-          style={{backgroundColor: 'gray', height: 40}}
+          style={{
+            backgroundColor: 'white',
+            height: 40,
+            borderWidth: 1,
+            borderColor: 'black',
+          }}
         />
         <TouchableOpacity
           onPress={() => {
