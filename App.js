@@ -10,31 +10,34 @@ import {Text, View, ScrollView, TouchableOpacity} from 'react-native';
 
 import MyTestComponent from './src/components/MyTestComponent';
 import MyTestFuncComponent from './src/components/MyTestFuncComponent';
+import UserProfile from './src/components/UserProfile';
 
 function App() {
   const [selectedColor, setSelectedColor] = useState('');
   console.log('APP GOT RENDERED');
 
+  const userObject = {
+    firstName: 'Firdous',
+    lastName: 'Ali',
+    phone: '123456789',
+    email: 'firdous@firdous.com',
+    city: 'Karachi',
+    country: 'Pakistan',
+    street: 'abc street',
+    postal: '12345',
+  };
+
+  const inputStyle = {
+    height: 40,
+    backgroundColor: 'pink',
+    margin: 10,
+    padding: 5,
+  };
+
   return (
     <View style={{flex: 1, marginTop: 90, marginHorizontal: 10}}>
       <ScrollView>
-        <Text>hello world</Text>
-
-        <MyTestComponent bgColor="pink" testKey="testValue" />
-        <MyTestFuncComponent bgColor="yellow" score={99} />
-
-        <TouchableOpacity
-          onPress={() => {
-            setSelectedColor('red');
-          }}>
-          <Text>set to red</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => {
-            setSelectedColor('blue');
-          }}>
-          <Text>set to blue</Text>
-        </TouchableOpacity>
+        <UserProfile userData={userObject} inputStyle={inputStyle} />
       </ScrollView>
     </View>
   );
