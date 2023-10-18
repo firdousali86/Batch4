@@ -5,12 +5,14 @@ class MyTestComponent extends React.Component {
   constructor(props) {
     super(props);
 
+    //following is how we initialize the state in class component
     this.state = {
       mutableBGColor: props.bgColor,
     };
   }
 
   render() {
+    //following is how we use the state in class component
     const {mutableBGColor} = this.state;
 
     return (
@@ -25,6 +27,8 @@ class MyTestComponent extends React.Component {
         <TouchableOpacity
           onPress={() => {
             //TO CHANGE THE COLOR
+
+            //following is how we change the state in class component
             this.setState({mutableBGColor: 'blue'});
           }}>
           <Text>Press to blue</Text>
