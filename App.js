@@ -6,7 +6,14 @@
  */
 
 import React, {useState} from 'react';
-import {Text, View, ScrollView, TouchableOpacity} from 'react-native';
+import {
+  Text,
+  View,
+  ScrollView,
+  TouchableOpacity,
+  TextInput,
+  Button,
+} from 'react-native';
 
 import {
   MyHOC,
@@ -38,12 +45,46 @@ function App() {
   };
 
   return (
-    <View style={{flex: 1, marginTop: 90, marginHorizontal: 10}}>
-      <ScrollView>
-        <MyTestComponent />
-        <MyTestFuncComponent />
-        <UserProfile userData={userObject} inputStyle={inputStyle} />
-      </ScrollView>
+    <View
+      style={{
+        flex: 1,
+        flexDirection: 'column', //horizontal
+        backgroundColor: 'red',
+      }}>
+      <View
+        style={{
+          flex: 1,
+          margin: 10,
+          backgroundColor: 'pink',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}>
+        <Text>First box</Text>
+      </View>
+      <View
+        style={{
+          flex: 1,
+          margin: 10,
+          backgroundColor: 'yellow',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}>
+        <Text>Second box</Text>
+        <TouchableOpacity style={{position: 'absolute', bottom: 10, right: 10}}>
+          <Text>Test Button</Text>
+        </TouchableOpacity>
+      </View>
+
+      <View
+        style={{
+          flex: 1,
+          margin: 10,
+          backgroundColor: 'green',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}>
+        <Text>Third box</Text>
+      </View>
     </View>
   );
 }
