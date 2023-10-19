@@ -1,9 +1,9 @@
 import {useState} from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
 
-import UserBasicInfo from './UserBasicInfo';
-import UserContactInfo from './UserContactInfo';
-import UserAddressInfo from './UserAddressInfo';
+import UserBasicInfo from '../UserBasicInfo';
+import UserContactInfo from '../UserContactInfo';
+import UserAddressInfo from '../UserAddressInfo';
 
 const UserProfile = props => {
   const [backColor, setBackColor] = useState('yellow');

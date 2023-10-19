@@ -11,7 +11,6 @@ import {Text, View, ScrollView, TouchableOpacity} from 'react-native';
 import MyTestComponent from './src/components/MyTestComponent';
 import MyTestFuncComponent from './src/components/MyTestFuncComponent';
 import UserProfile from './src/components/UserProfile';
-import MyHOC from './src/components/MYHOC';
 
 function App() {
   const [selectedColor, setSelectedColor] = useState('');
@@ -38,6 +37,8 @@ function App() {
   return (
     <View style={{flex: 1, marginTop: 90, marginHorizontal: 10}}>
       <ScrollView>
+        <MyTestComponent />
+        <MyTestFuncComponent />
         <UserProfile userData={userObject} inputStyle={inputStyle} />
       </ScrollView>
     </View>
