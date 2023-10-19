@@ -1,11 +1,11 @@
-import {} from 'react';
-import {View, Text, TextInput} from 'react-native';
+import {useState} from 'react';
+import {View, Text, TextInput, TouchableOpacity} from 'react-native';
 
 const UserBasicInfo = props => {
-  const {inputStyle, firstName, lastName} = props;
+  let {inputStyle, firstName, lastName, bgColor, colorChangeCB} = props;
 
   return (
-    <View>
+    <View style={{backgroundColor: bgColor}}>
       <Text>BASIC USER INFO</Text>
 
       <TextInput
@@ -20,6 +20,14 @@ const UserBasicInfo = props => {
         placeholder="Last Name"
         style={inputStyle}
       />
+
+      <TouchableOpacity
+        onPress={() => {
+          //here
+          colorChangeCB('blue');
+        }}>
+        <Text>User info button</Text>
+      </TouchableOpacity>
     </View>
   );
 };
