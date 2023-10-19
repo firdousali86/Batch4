@@ -13,6 +13,8 @@ import {
   TouchableOpacity,
   TextInput,
   Button,
+  FlatList,
+  Image,
 } from 'react-native';
 
 import {
@@ -48,43 +50,36 @@ function App() {
     <View
       style={{
         flex: 1,
-        flexDirection: 'column', //horizontal
-        backgroundColor: 'red',
       }}>
-      <View
-        style={{
-          flex: 1,
-          margin: 10,
-          backgroundColor: 'pink',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}>
-        <Text>First box</Text>
-      </View>
-      <View
-        style={{
-          flex: 1,
-          margin: 10,
-          backgroundColor: 'yellow',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}>
-        <Text>Second box</Text>
-        <TouchableOpacity style={{position: 'absolute', bottom: 10, right: 10}}>
-          <Text>Test Button</Text>
-        </TouchableOpacity>
-      </View>
-
-      <View
-        style={{
-          flex: 1,
-          margin: 10,
-          backgroundColor: 'green',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}>
-        <Text>Third box</Text>
-      </View>
+      <FlatList
+        data={[
+          {title: 'London'},
+          {title: 'Birmingham'},
+          {title: 'NY'},
+          {title: 'LA'},
+        ]}
+        renderItem={({item}) => {
+          return (
+            <View
+              style={{
+                height: 40,
+                backgroundColor: 'yellow',
+                marginVertical: 5,
+                justifyContent: 'center',
+                alignItems: 'center',
+                flexDirection: 'row',
+              }}>
+              <Image
+                style={{width: 20, height: 20}}
+                source={{
+                  uri: 'https://media.timeout.com/images/106049585/image.jpg',
+                }}
+              />
+              <Text>{item.title}</Text>
+            </View>
+          );
+        }}
+      />
     </View>
   );
 }
