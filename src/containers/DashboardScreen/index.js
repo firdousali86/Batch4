@@ -7,11 +7,18 @@ import {
   Text,
   TouchableOpacity,
   TextInput,
+  Button,
 } from 'react-native';
 
 const DashboardScreen = props => {
   const [city, setCity] = useState('');
-  const [country, setCountry] = useState('');
+
+  const [cityList, setCityList] = useState([
+    {title: 'London'},
+    {title: 'Birmingham'},
+    {title: 'NY'},
+    {title: 'LA'},
+  ]);
 
   return (
     <SafeAreaView
@@ -24,22 +31,11 @@ const DashboardScreen = props => {
           setCity(changedText);
         }}
         placeholder="City"
-      />
-      <TextInput
-        value={country}
-        onChangeText={changedText => {
-          setCountry(changedText);
-        }}
-        placeholder="Country"
+        style={{backgroundColor: 'pink', height: 40, margin: 10, padding: 5}}
       />
 
       <FlatList
-        data={[
-          {title: 'London'},
-          {title: 'Birmingham'},
-          {title: 'NY'},
-          {title: 'LA'},
-        ]}
+        data={cityList}
         renderItem={({item}) => {
           return (
             <View
@@ -90,6 +86,15 @@ const DashboardScreen = props => {
         }}>
         <Text>Goto Settings</Text>
       </TouchableOpacity>
+
+      <Button
+        title={'Add to city list'}
+        onPress={() => {
+          setCityList([...cityList, {title: city}]);
+
+          setCity('');
+        }}
+      />
     </SafeAreaView>
   );
 };
