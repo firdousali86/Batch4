@@ -43,6 +43,15 @@ const SettingScreen = props => {
           props.navigation.popToTop();
         }}
       />
+      <Button
+        title={'Update params'}
+        onPress={() => {
+          props.navigation.setParams({
+            city: 'London',
+            country: 'UK',
+          });
+        }}
+      />
     </View>
   );
 };

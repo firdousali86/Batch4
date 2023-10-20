@@ -21,7 +21,11 @@ function App() {
           component={DashboardScreen}
           options={{title: 'Overview'}}
         />
-        <Stack.Screen name="Settings" component={SettingScreen} />
+        <Stack.Screen
+          name="Settings"
+          component={SettingScreen}
+          initialParams={{city: 'New Delhi', country: 'India'}}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
