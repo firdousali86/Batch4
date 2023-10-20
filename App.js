@@ -9,45 +9,21 @@ import React, {useState} from 'react';
 import {
   Text,
   View,
-  ScrollView,
-  TouchableOpacity,
-  TextInput,
-  Button,
+  SafeAreaView,
   FlatList,
   Image,
+  TouchableOpacity,
+  Button,
 } from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
 
-import {
-  MyHOC,
-  MyTestComponent,
-  MyTestFuncComponent,
-  UserProfile,
-} from './src/components';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-function App() {
-  const [selectedColor, setSelectedColor] = useState('');
-  console.log('APP GOT RENDERED');
+const Stack = createNativeStackNavigator();
 
-  const userObject = {
-    firstName: 'Firdous',
-    lastName: 'Ali',
-    phone: '123456789',
-    email: 'firdous@firdous.com',
-    city: 'Karachi',
-    country: 'Pakistan',
-    street: 'abc street',
-    postal: '12345',
-  };
-
-  const inputStyle = {
-    height: 40,
-    backgroundColor: 'pink',
-    margin: 10,
-    padding: 5,
-  };
-
+const DashboardScreen = props => {
   return (
-    <View
+    <SafeAreaView
       style={{
         flex: 1,
       }}>
@@ -70,17 +46,91 @@ function App() {
                 flexDirection: 'row',
               }}>
               <Image
-                style={{width: 20, height: 20}}
+                style={{
+                  width: 20,
+                  height: 20,
+                  marginHorizontal: 10,
+                }}
                 source={{
                   uri: 'https://media.timeout.com/images/106049585/image.jpg',
                 }}
               />
-              <Text>{item.title}</Text>
+              <View
+                style={{
+                  flex: 1,
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}>
+                <Text>{item.title}</Text>
+              </View>
             </View>
           );
         }}
       />
-    </View>
+      <TouchableOpacity
+        onPress={() => {
+          props.navigation.navigate('Settings');
+        }}
+        style={{
+          height: 40,
+          marginHorizontal: 10,
+          backgroundColor: 'pink',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}>
+        <Text>Goto Settings</Text>
+      </TouchableOpacity>
+    </SafeAreaView>
+  );
+};
+
+function App() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Dashboard"
+          component={DashboardScreen}
+          options={{title: 'Overview'}}
+        />
+        <Stack.Screen
+          name="Settings"
+          component={props => {
+            return (
+              <View>
+                <Text>This is settings screen</Text>
+                <TouchableOpacity
+                  onPress={() => {
+                    props.navigation.push('Settings');
+                  }}
+                  style={{
+                    height: 40,
+                    marginHorizontal: 10,
+                    backgroundColor: 'pink',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                  }}>
+                  <Text>Goto Settings</Text>
+                </TouchableOpacity>
+
+                <Button
+                  title={'Go to dashboard at once'}
+                  onPress={() => {
+                    props.navigation.navigate('Dashboard');
+                  }}
+                />
+                <Button
+                  title={'Go back'}
+                  onPress={() => {
+                    props.navigation.goBack();
+                  }}
+                />
+              </View>
+            );
+          }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
