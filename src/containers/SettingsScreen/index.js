@@ -2,9 +2,15 @@ import {} from 'react';
 import {View, Text, TouchableOpacity, Button} from 'react-native';
 
 const SettingScreen = props => {
+  const {route} = props;
+
   return (
     <View>
       <Text>This is settings screen</Text>
+
+      <Text>{route.params.city}</Text>
+      <Text>{route.params.country}</Text>
+
       <TouchableOpacity
         onPress={() => {
           props.navigation.push('Settings');

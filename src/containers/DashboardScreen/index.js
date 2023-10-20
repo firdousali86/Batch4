@@ -1,4 +1,4 @@
-import {} from 'react';
+import {useState} from 'react';
 import {
   SafeAreaView,
   View,
@@ -6,14 +6,33 @@ import {
   Image,
   Text,
   TouchableOpacity,
+  TextInput,
 } from 'react-native';
 
 const DashboardScreen = props => {
+  const [city, setCity] = useState('');
+  const [country, setCountry] = useState('');
+
   return (
     <SafeAreaView
       style={{
         flex: 1,
       }}>
+      <TextInput
+        value={city}
+        onChangeText={changedText => {
+          setCity(changedText);
+        }}
+        placeholder="City"
+      />
+      <TextInput
+        value={country}
+        onChangeText={changedText => {
+          setCountry(changedText);
+        }}
+        placeholder="Country"
+      />
+
       <FlatList
         data={[
           {title: 'London'},
@@ -57,8 +76,8 @@ const DashboardScreen = props => {
       <TouchableOpacity
         onPress={() => {
           props.navigation.navigate('Settings', {
-            itemId: 86,
-            otherParam: 'anything you want here',
+            city,
+            country,
           });
         }}
         style={{
