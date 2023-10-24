@@ -15,6 +15,8 @@ class TestClassComp extends React.Component {
   render() {
     console.log('testclass rendered');
 
+    const {inputText} = this.state;
+
     return (
       <View style={{flex: 1}}>
         <TextInput
@@ -25,8 +27,8 @@ class TestClassComp extends React.Component {
           style={{backgroundColor: 'pink', height: 40, padding: 5, margin: 10}}
         />
 
-        <LevelOne></LevelOne>
-        <LevelOne></LevelOne>
+        <LevelOne inputText={inputText}></LevelOne>
+        <LevelOne inputText={inputText}></LevelOne>
       </View>
     );
   }

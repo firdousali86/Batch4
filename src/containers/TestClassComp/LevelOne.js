@@ -3,7 +3,7 @@ import {View, Text} from 'react-native';
 
 import LevelTwo from './LevelTwo';
 
-class LevelOne extends React.Component {
+class LevelOne extends React.PureComponent {
   constructor(props) {
     super(props);
 
