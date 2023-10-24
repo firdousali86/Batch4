@@ -14,10 +14,10 @@ const DashboardScreen = props => {
   const [city, setCity] = useState('');
 
   const [cityList, setCityList] = useState([
-    {title: 'London'},
-    {title: 'Birmingham'},
-    {title: 'NY'},
-    {title: 'LA'},
+    {city: 'London'},
+    {city: 'Birmingham'},
+    {city: 'NY'},
+    {city: 'LA'},
   ]);
 
   return (
@@ -38,10 +38,16 @@ const DashboardScreen = props => {
         data={cityList}
         renderItem={({item}) => {
           return (
-            <View
+            <TouchableOpacity
+              onPress={() => {
+                props.navigation.navigate('Settings', {
+                  city: item.title,
+                  country: 'somecountry',
+                });
+              }}
               style={{
                 height: 40,
-                backgroundColor: 'yellow',
+                backgroundColor: 'blue',
                 marginVertical: 5,
                 justifyContent: 'center',
                 alignItems: 'center',
@@ -63,9 +69,9 @@ const DashboardScreen = props => {
                   justifyContent: 'center',
                   alignItems: 'center',
                 }}>
-                <Text>{item.title}</Text>
+                <Text>{item.city}</Text>
               </View>
-            </View>
+            </TouchableOpacity>
           );
         }}
       />

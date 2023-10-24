@@ -1,4 +1,5 @@
 import DashboardScreen from './DashboardScreen';
 import SettingScreen from './SettingsScreen';
+import HookEffectScreen from './HookEffectScreen';
 
-export {DashboardScreen, SettingScreen};
+export {DashboardScreen, SettingScreen, HookEffectScreen};
