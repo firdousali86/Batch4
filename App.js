@@ -13,6 +13,7 @@ import {
   DashboardScreen,
   SettingScreen,
   HookEffectScreen,
+  TestClassComp,
 } from './src/containers';
 import {Text, View} from 'react-native';
 
@@ -45,6 +46,11 @@ function App() {
   const getMainStack = () => {
     return (
       <Stack.Group>
+        <Stack.Screen
+          name="testClassComp"
+          component={TestClassComp}
+          options={{title: 'Class components'}}
+        />
         <Stack.Screen
           name="Dashboard"
           component={DashboardScreen}
