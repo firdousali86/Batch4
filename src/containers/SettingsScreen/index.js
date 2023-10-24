@@ -52,6 +52,21 @@ const SettingScreen = props => {
           });
         }}
       />
+
+      <TouchableOpacity
+        onPress={() => {
+          //to pass props forward
+          // props.navigation.navigate('Dashboard', {ddf:dfgf});
+
+          //to pass props backward
+          props.navigation.navigate({
+            name: 'Dashboard',
+            params: {batch: 5, topic: 'navigation data passing'},
+            merge: true,
+          });
+        }}>
+        <Text>Back to home</Text>
+      </TouchableOpacity>
     </View>
   );
 };

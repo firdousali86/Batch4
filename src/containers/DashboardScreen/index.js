@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import {
   SafeAreaView,
   View,
@@ -19,6 +19,14 @@ const DashboardScreen = props => {
     {city: 'NY'},
     {city: 'LA'},
   ]);
+
+  useEffect(() => {
+    console.log('=========');
+    console.log(props.route.params);
+    console.log('=========');
+  }, [props.route.params]);
+
+  console.log('dashboard screen got rerendered');
 
   return (
     <SafeAreaView
