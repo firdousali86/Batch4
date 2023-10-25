@@ -9,13 +9,14 @@ class TestClassComp extends React.Component {
 
     this.state = {
       inputText: 'some initial value',
+      inputText2: 'some initial value2',
     };
   }
 
   render() {
     console.log('testclass rendered');
 
-    const {inputText} = this.state;
+    const {inputText, inputText2} = this.state;
 
     return (
       <View style={{flex: 1}}>
@@ -27,8 +28,15 @@ class TestClassComp extends React.Component {
           style={{backgroundColor: 'pink', height: 40, padding: 5, margin: 10}}
         />
 
-        <LevelOne inputText={inputText}></LevelOne>
-        <LevelOne></LevelOne>
+        <TextInput
+          value={this.state.inputText2}
+          onChangeText={changedText => {
+            this.setState({inputText2: changedText});
+          }}
+          style={{backgroundColor: 'pink', height: 40, padding: 5, margin: 10}}
+        />
+
+        <LevelOne inputText={inputText} inputText2={inputText2}></LevelOne>
       </View>
     );
   }
