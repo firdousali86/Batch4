@@ -8,7 +8,7 @@ class TestClassComp extends React.Component {
     super(props);
 
     this.state = {
-      inputText: '',
+      inputText: 'some initial value',
     };
   }
 
@@ -28,7 +28,7 @@ class TestClassComp extends React.Component {
         />
 
         <LevelOne inputText={inputText}></LevelOne>
-        <LevelOne inputText={inputText}></LevelOne>
+        <LevelOne></LevelOne>
       </View>
     );
   }
