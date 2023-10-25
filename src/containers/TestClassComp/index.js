@@ -13,6 +13,10 @@ class TestClassComp extends React.Component {
     };
   }
 
+  componentWillUnmount() {
+    console.log('COMPONENT UNMOUNTED');
+  }
+
   render() {
     console.log('testclass rendered');
 

@@ -101,6 +101,20 @@ const DashboardScreen = props => {
         <Text>Goto Settings</Text>
       </TouchableOpacity>
 
+      <TouchableOpacity
+        onPress={() => {
+          props.navigation.navigate('testClassComp');
+        }}>
+        <Text>Push class component</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity
+        onPress={() => {
+          props.navigation.navigate('hookEffectScreen');
+        }}>
+        <Text>Push Functional component</Text>
+      </TouchableOpacity>
+
       <Button
         title={'Add to city list'}
         onPress={() => {

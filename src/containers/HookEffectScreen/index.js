@@ -8,7 +8,31 @@ const HookEffectScreen = props => {
 
   useEffect(() => {
     console.log('useeffect called');
+
+    return () => {
+      console.log(
+        'do you know, this should work as componentwillunmount, case 1',
+      );
+    };
   }, []); // only be called at once at the load time // componentdidmount
+
+  useEffect(() => {
+    console.log('second useeffect');
+  }, []);
+
+  useEffect(() => {
+    console.log('third useeffect');
+  }, []);
+
+  useEffect(() => {
+    console.log('states changed');
+
+    return () => {
+      console.log(
+        'do you know, this should work as componentwillunmount, case 2',
+      );
+    };
+  }, [firstName, lastName]);
 
   console.log('render ran');
 

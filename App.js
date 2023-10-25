@@ -47,15 +47,16 @@ function App() {
     return (
       <Stack.Group>
         <Stack.Screen
-          name="testClassComp"
-          component={TestClassComp}
-          options={{title: 'Class components'}}
-        />
-        <Stack.Screen
           name="Dashboard"
           component={DashboardScreen}
           options={{title: 'Overview'}}
         />
+        <Stack.Screen
+          name="testClassComp"
+          component={TestClassComp}
+          options={{title: 'Class components'}}
+        />
+
         <Stack.Screen
           name="hookEffectScreen"
           component={HookEffectScreen}
