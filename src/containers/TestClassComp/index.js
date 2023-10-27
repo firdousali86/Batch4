@@ -1,9 +1,10 @@
-import React, {useEffect, useState, useCallback} from 'react';
-import {View, Text, TextInput} from 'react-native';
+import React, {useEffect, useState, useCallback, useMemo} from 'react';
+import {View, Text, TextInput, Button} from 'react-native';
 
 import LevelOne from './LevelOne';
 
 const TestClassComp = props => {
+  const [count, setCount] = useState(0);
   const [inputText, setInputValue] = useState('some initial value');
   const [inputText2, setInputValue2] = useState('some initial value2');
 
@@ -11,11 +12,17 @@ const TestClassComp = props => {
     console.log('this is my callback');
   }, []);
 
+  const increment = () => {
+    setCount(c => c + 1);
+  };
+
   useEffect(() => {
     return () => {
       console.log('COMPONENT UNMOUNTED');
     };
   }, []);
+
+  const mycalculation = useMemo(() => expensiveCalculation(count), [count]);
 
   console.log('testclass rendered');
 
@@ -37,11 +44,30 @@ const TestClassComp = props => {
         style={{backgroundColor: 'pink', height: 40, padding: 5, margin: 10}}
       />
 
+      <Button
+        title="Increase Count"
+        onPress={() => {
+          increment();
+        }}
+      />
+
+      <Text>{mycalculation}</Text>
+
       <LevelOne
         inputText={inputText}
         someCallback={myCustomCallback}></LevelOne>
     </View>
   );
+};
+
+const expensiveCalculation = num => {
+  console.log('Calculating');
+
+  for (let i = 0; i < 1000000000; i++) {
+    num += 1;
+  }
+
+  return num;
 };
 
 export default TestClassComp;
