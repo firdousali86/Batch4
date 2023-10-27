@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, memo} from 'react';
 import {View, Text} from 'react-native';
 
 import LevelTwo from './LevelTwo';
@@ -28,7 +28,9 @@ const LevelOne = props => {
   );
 };
 
-export default LevelOne;
+export default memo(LevelOne, (prevProps, nextProps) => {
+  return prevProps.inputText === nextProps.inputText;
+});
 
 // shouldComponentUpdate(nextProps, nextState) {
 //   const decision = nextProps.inputText !== this.props.inputText;
