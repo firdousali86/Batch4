@@ -28,9 +28,11 @@ const LevelOne = props => {
   );
 };
 
-export default memo(LevelOne, (prevProps, nextProps) => {
-  return prevProps.inputText === nextProps.inputText;
-});
+export default memo(LevelOne);
+
+// export default memo(LevelOne, (prevProps, nextProps) => {
+//   return prevProps.inputText === nextProps.inputText;
+// });
 
 // shouldComponentUpdate(nextProps, nextState) {
 //   const decision = nextProps.inputText !== this.props.inputText;

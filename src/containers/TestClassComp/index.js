@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useCallback} from 'react';
 import {View, Text, TextInput} from 'react-native';
 
 import LevelOne from './LevelOne';
@@ -6,6 +6,10 @@ import LevelOne from './LevelOne';
 const TestClassComp = props => {
   const [inputText, setInputValue] = useState('some initial value');
   const [inputText2, setInputValue2] = useState('some initial value2');
+
+  const myCustomCallback = useCallback(() => {
+    console.log('this is my callback');
+  }, []);
 
   useEffect(() => {
     return () => {
@@ -33,7 +37,9 @@ const TestClassComp = props => {
         style={{backgroundColor: 'pink', height: 40, padding: 5, margin: 10}}
       />
 
-      <LevelOne inputText={inputText} inputText2={inputText2}></LevelOne>
+      <LevelOne
+        inputText={inputText}
+        someCallback={myCustomCallback}></LevelOne>
     </View>
   );
 };
