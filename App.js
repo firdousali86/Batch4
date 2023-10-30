@@ -5,7 +5,7 @@
  * @format
  */
 
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
@@ -17,10 +17,16 @@ import {
 } from './src/containers';
 import {Text, View} from 'react-native';
 
+import {PersistanceHelper} from './src/helpers';
+
 const Stack = createNativeStackNavigator();
 
 function App() {
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(true);
+
+  useEffect(() => {
+    PersistanceHelper.setValue('myFirstKey', 'hey is this value stored?');
+  }, []);
 
   const getAuthStack = () => {
     return (

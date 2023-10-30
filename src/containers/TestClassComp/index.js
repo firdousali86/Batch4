@@ -1,6 +1,6 @@
 import React, {useEffect, useState, useCallback, useMemo} from 'react';
 import {View, Text, TextInput, Button} from 'react-native';
-
+import {PersistanceHelper} from '../../helpers';
 import LevelOne from './LevelOne';
 
 const TestClassComp = props => {
@@ -17,6 +17,16 @@ const TestClassComp = props => {
   };
 
   useEffect(() => {
+    PersistanceHelper.getValue(
+      'myFirstKey',
+      data => {
+        console.log(data);
+      },
+      error => {
+        console.log(error);
+      },
+    );
+
     return () => {
       console.log('COMPONENT UNMOUNTED');
     };
