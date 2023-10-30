@@ -17,20 +17,18 @@ const TestClassComp = props => {
   };
 
   useEffect(() => {
-    PersistanceHelper.getValue(
-      'myFirstKey',
-      data => {
-        console.log(data);
-      },
-      error => {
-        console.log(error);
-      },
-    );
+    someAsyncFunctionality();
 
     return () => {
       console.log('COMPONENT UNMOUNTED');
     };
   }, []);
+
+  const someAsyncFunctionality = async () => {
+    const myfetchedvalue = await PersistanceHelper.getValue('myFirstKey');
+
+    console.log(myfetchedvalue);
+  };
 
   const mycalculation = useMemo(() => expensiveCalculation(count), [count]);
 
