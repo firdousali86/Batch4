@@ -26,8 +26,11 @@ const TestClassComp = props => {
 
   const someAsyncFunctionality = async () => {
     const myfetchedvalue = await PersistanceHelper.getValue('myFirstKey');
+    const myFetchedObject = await PersistanceHelper.getObject('myFirstObject');
 
     console.log(myfetchedvalue);
+
+    console.log(myFetchedObject);
   };
 
   const mycalculation = useMemo(() => expensiveCalculation(count), [count]);

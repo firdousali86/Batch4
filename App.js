@@ -25,7 +25,15 @@ function App() {
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(true);
 
   useEffect(() => {
-    PersistanceHelper.setValue('myFirstKey', 'hey is this value stored?');
+    // PersistanceHelper.setValue('myFirstKey', 'hey is this value stored?');
+
+    const userObject = {
+      basicInfo: {firstName: 'abc', lastName: 'xyz'},
+      contactInfo: {phone: '123-456', email: 'abc@xyz'},
+      educationInfo: {degree: 'abc123', institution: 'xyz'},
+    };
+
+    PersistanceHelper.setObject('myFirstObject', userObject);
   }, []);
 
   const getAuthStack = () => {
