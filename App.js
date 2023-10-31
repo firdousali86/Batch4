@@ -15,38 +15,38 @@ import {
   HookEffectScreen,
   TestClassComp,
   TestContext,
+  LoginScreen,
 } from './src/containers';
 import {Text, View} from 'react-native';
+import {EventRegister} from 'react-native-event-listeners';
 
 import {PersistanceHelper} from './src/helpers';
 
 const Stack = createNativeStackNavigator();
 
 function App() {
-  const [isUserLoggedIn, setIsUserLoggedIn] = useState(true);
+  const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
 
   useEffect(() => {
-    // PersistanceHelper.setValue('myFirstKey', 'hey is this value stored?');
+    EventRegister.addEventListener('loginEvent', data => {
+      setIsUserLoggedIn(data);
+    });
 
-    const userObject = {
-      basicInfo: {firstName: 'abc', lastName: 'xyz'},
-      contactInfo: {phone: '123-456', email: 'abc@xyz'},
-      educationInfo: {degree: 'abc123', institution: 'xyz'},
-    };
-
-    PersistanceHelper.setObject('myFirstObject', userObject);
+    PersistanceHelper.getObject('loginDetails')
+      .then(data => {
+        if (data.username && data.password) {
+          setIsUserLoggedIn(true);
+        }
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }, []);
 
   const getAuthStack = () => {
     return (
       <Stack.Group>
-        <Stack.Screen
-          name="Login"
-          component={() => (
-            <View>
-              <Text>Login</Text>
-            </View>
-          )}></Stack.Screen>
+        <Stack.Screen name="Login" component={LoginScreen}></Stack.Screen>
         <Stack.Screen
           name="Signup"
           component={() => (
@@ -62,6 +62,11 @@ function App() {
     return (
       <Stack.Group>
         <Stack.Screen
+          name="Dashboard"
+          component={DashboardScreen}
+          options={{title: 'Overview'}}
+        />
+        <Stack.Screen
           name="testContext"
           component={TestContext}
           options={{title: 'Class components'}}
@@ -70,11 +75,6 @@ function App() {
           name="testClassComp"
           component={TestClassComp}
           options={{title: 'Class components'}}
-        />
-        <Stack.Screen
-          name="Dashboard"
-          component={DashboardScreen}
-          options={{title: 'Overview'}}
         />
 
         <Stack.Screen

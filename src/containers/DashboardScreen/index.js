@@ -9,6 +9,8 @@ import {
   TextInput,
   Button,
 } from 'react-native';
+import {PersistanceHelper} from '../../helpers';
+import {EventRegister} from 'react-native-event-listeners';
 
 const DashboardScreen = props => {
   const [city, setCity] = useState('');
@@ -121,6 +123,14 @@ const DashboardScreen = props => {
           setCityList([...cityList, {title: city}]);
 
           setCity('');
+        }}
+      />
+      <Button
+        title={'Logout'}
+        onPress={() => {
+          PersistanceHelper.setObject('loginDetails', {});
+
+          EventRegister.emit('loginEvent', false);
         }}
       />
     </SafeAreaView>
