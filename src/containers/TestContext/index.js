@@ -1,5 +1,5 @@
-import {useState, memo, createContext, useContext} from 'react';
-import {View, Text, TextInput} from 'react-native';
+import {useState, createContext, useContext, memo} from 'react';
+import {View, Text, TextInput, TextComponent} from 'react-native';
 
 const UserContext = createContext();
 
@@ -9,19 +9,22 @@ const TestContext = () => {
   console.log('component 1');
 
   return (
-    <UserContext.Provider value={user}>
-      <View style={{backgroundColor: 'red', margin: 5}}>
-        <Text>component 1 {user}</Text>
-        <TextInput
-          value={user}
-          onChangeText={ct => {
-            setUser(ct);
-          }}
-          style={{height: 40, backgroundColor: 'white', margin: 10}}
-        />
-        <TestContext2 />
-      </View>
-    </UserContext.Provider>
+    <>
+      <UserContext.Provider value={user}>
+        <View style={{backgroundColor: 'red', margin: 5}}>
+          <Text>component 1 {user}</Text>
+          <TextInput
+            value={user}
+            onChangeText={ct => {
+              setUser(ct);
+            }}
+            style={{height: 40, backgroundColor: 'white', margin: 10}}
+          />
+          <TestContext2 />
+        </View>
+      </UserContext.Provider>
+      <TestContext5 />
+    </>
   );
 };
 
@@ -35,7 +38,7 @@ const TestContext2 = memo(({}) => {
   );
 });
 
-const TestContext3 = memo(({}) => {
+const TestContext3 = ({}) => {
   console.log('component 3');
   return (
     <View style={{backgroundColor: 'green', margin: 5}}>
@@ -43,19 +46,22 @@ const TestContext3 = memo(({}) => {
       <TestContext4 />
     </View>
   );
-});
+};
 
-const TestContext4 = memo(({}) => {
+const TestContext4 = ({}) => {
+  const user = useContext(UserContext);
+
   console.log('component 4');
   return (
     <View style={{backgroundColor: 'yellow', margin: 5}}>
       <Text>component 4</Text>
+      <Text>{user}</Text>
       <TestContext5 />
     </View>
   );
-});
+};
 
-const TestContext5 = memo(({}) => {
+const TestContext5 = ({}) => {
   const user = useContext(UserContext);
 
   console.log('component 5');
@@ -65,6 +71,6 @@ const TestContext5 = memo(({}) => {
       <Text>{user}</Text>
     </View>
   );
-});
+};
 
 export default TestContext;
