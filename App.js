@@ -14,6 +14,7 @@ import {
   SettingScreen,
   HookEffectScreen,
   TestClassComp,
+  TestContext,
 } from './src/containers';
 import {Text, View} from 'react-native';
 
@@ -60,6 +61,11 @@ function App() {
   const getMainStack = () => {
     return (
       <Stack.Group>
+        <Stack.Screen
+          name="testContext"
+          component={TestContext}
+          options={{title: 'Class components'}}
+        />
         <Stack.Screen
           name="testClassComp"
           component={TestClassComp}
