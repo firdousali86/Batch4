@@ -4,19 +4,19 @@ import {useUserContext} from '../../contexts/UserContext';
 
 const TestContext5 = ({}) => {
   const {
-    state: {data},
-    actions: {setData},
+    state: {username},
+    actions: {setUsername},
   } = useUserContext();
 
   console.log('component 5');
   return (
     <View style={{backgroundColor: 'pink', margin: 5}}>
       <Text>component 5</Text>
-      <Text>{data}</Text>
+      <Text>{username}</Text>
       <Button
         title={'Change name'}
         onPress={() => {
-          setData('New Name');
+          setUsername('New Name');
         }}
       />
     </View>

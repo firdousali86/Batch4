@@ -2,16 +2,16 @@ import React, {createContext, useContext, useEffect, useState} from 'react';
 
 const UserContext = createContext({state: {}, actions: {}});
 
-export function UserContextProvider({children, username}) {
-  const [data, setData] = useState(username);
+export function UserContextProvider({children, username, setUsername}) {
+  //   const [data, setData] = useState(username);
 
-  useEffect(() => {
-    setData(username);
-  }, [username]);
+  //   useEffect(() => {
+  //     setData(username);
+  //   }, [username]);
 
   const value = {
-    state: {data},
-    actions: {setData},
+    state: {username},
+    actions: {setUsername},
   };
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
