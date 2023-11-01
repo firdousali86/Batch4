@@ -1,8 +1,8 @@
-import {useState, createContext, useContext, memo} from 'react';
+import {useState, memo} from 'react';
 import {View, Text, TextInput, TextComponent} from 'react-native';
 
 const TestContext5 = ({}) => {
-  const user = ''; //useContext(UserContext);
+  const user = '';
 
   console.log('component 5');
   return (

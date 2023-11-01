@@ -1,9 +1,8 @@
-import {useState, createContext, useContext, memo} from 'react';
+import {useState, memo} from 'react';
 import {View, Text, TextInput, TextComponent} from 'react-native';
 import TestContext2 from './TestContext2';
 import TestContext5 from './TestContext5';
-
-const UserContext = createContext();
+import {UserContextProvider} from '../../contexts/UserContext';
 
 const TestContext = () => {
   const [user, setUser] = useState('Jessie Hall');
@@ -12,7 +11,7 @@ const TestContext = () => {
 
   return (
     <>
-      <UserContext.Provider value={user}>
+      <UserContextProvider value={user}>
         <View style={{backgroundColor: 'red', margin: 5}}>
           <Text>component 1 {user}</Text>
           <TextInput
@@ -24,7 +23,7 @@ const TestContext = () => {
           />
           <TestContext2 />
         </View>
-      </UserContext.Provider>
+      </UserContextProvider>
       <TestContext5 />
     </>
   );
