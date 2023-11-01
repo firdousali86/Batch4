@@ -1,5 +1,7 @@
 import {useState, createContext, useContext, memo} from 'react';
 import {View, Text, TextInput, TextComponent} from 'react-native';
+import TestContext2 from './TestContext2';
+import TestContext5 from './TestContext5';
 
 const UserContext = createContext();
 
@@ -25,51 +27,6 @@ const TestContext = () => {
       </UserContext.Provider>
       <TestContext5 />
     </>
-  );
-};
-
-const TestContext2 = memo(({}) => {
-  console.log('component 2');
-  return (
-    <View style={{backgroundColor: 'blue', margin: 5}}>
-      <Text>component 2</Text>
-      <TestContext3 />
-    </View>
-  );
-});
-
-const TestContext3 = ({}) => {
-  console.log('component 3');
-  return (
-    <View style={{backgroundColor: 'green', margin: 5}}>
-      <Text>component 3</Text>
-      <TestContext4 />
-    </View>
-  );
-};
-
-const TestContext4 = ({}) => {
-  const user = useContext(UserContext);
-
-  console.log('component 4');
-  return (
-    <View style={{backgroundColor: 'yellow', margin: 5}}>
-      <Text>component 4</Text>
-      <Text>{user}</Text>
-      <TestContext5 />
-    </View>
-  );
-};
-
-const TestContext5 = ({}) => {
-  const user = useContext(UserContext);
-
-  console.log('component 5');
-  return (
-    <View style={{backgroundColor: 'pink', margin: 5}}>
-      <Text>component 5</Text>
-      <Text>{user}</Text>
-    </View>
   );
 };
 
