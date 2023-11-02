@@ -4,8 +4,8 @@ import {useUserContext} from '../../contexts/UserContext';
 
 const TestContext5 = ({}) => {
   const {
-    state: {username},
-    actions: {setUsername},
+    state: {username, isNotificationEnabled},
+    actions: {setUsername, setIsNotifEnabled},
   } = useUserContext();
 
   console.log('component 5');
@@ -19,6 +19,7 @@ const TestContext5 = ({}) => {
           setUsername('New Name');
         }}
       />
+      <Text>{isNotificationEnabled ? 'Enabled' : 'Disabled'}</Text>
     </View>
   );
 };
