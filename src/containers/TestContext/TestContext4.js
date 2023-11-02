@@ -6,7 +6,6 @@ import {useUserContext} from '../../contexts/UserContext';
 const TestContext4 = ({}) => {
   const {
     state: {username},
-    actions: {setUsername},
   } = useUserContext();
 
   console.log('component 4');
