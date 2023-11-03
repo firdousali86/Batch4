@@ -16,6 +16,7 @@ import {
   TestClassComp,
   TestContext,
   LoginScreen,
+  TestUseRef,
 } from './src/containers';
 import {Text, View} from 'react-native';
 import {EventRegister} from 'react-native-event-listeners';
@@ -61,6 +62,11 @@ function App() {
   const getMainStack = () => {
     return (
       <Stack.Group>
+        <Stack.Screen
+          name="testUseRef"
+          component={TestUseRef}
+          options={{title: 'Test Useref'}}
+        />
         <Stack.Screen
           name="testContext"
           component={TestContext}

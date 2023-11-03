@@ -4,6 +4,7 @@ import HookEffectScreen from './HookEffectScreen';
 import TestClassComp from './TestClassComp';
 import TestContext from './TestContext';
 import LoginScreen from './LoginScreen';
+import TestUseRef from './TestUseRef';
 
 export {
   DashboardScreen,
@@ -12,4 +13,5 @@ export {
   TestClassComp,
   TestContext,
   LoginScreen,
+  TestUseRef,
 };
