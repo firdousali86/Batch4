@@ -1,8 +1,17 @@
 import {useEffect, useState} from 'react';
-import {View, Text, FlatList} from 'react-native';
+import {View, Text, FlatList, Button} from 'react-native';
+import {useSelector, useDispatch} from 'react-redux';
+import {
+  increment,
+  decrement,
+  incrementByAmount,
+} from '../../features/counter/counterSlice';
 
 const TestApiScreen = () => {
   const [data, setData] = useState([]);
+
+  const count = useSelector(state => state.counter.value);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     fetch('https://jsonplaceholder.typicode.com/todos')
@@ -18,17 +27,20 @@ const TestApiScreen = () => {
   return (
     <View>
       <Text>test</Text>
-      <FlatList
-        data={data}
-        renderItem={({item, index}) => {
-          return (
-            <View>
-              <Text>{item.title}</Text>
-              <Text>{item.userId}</Text>
-            </View>
-          );
+
+      <Button
+        title={'Increment'}
+        onPress={() => {
+          dispatch(increment());
         }}
       />
+      <Button
+        title={'Decrement'}
+        onPress={() => {
+          dispatch(decrement());
+        }}
+      />
+      <Text>{count}</Text>
     </View>
   );
 };

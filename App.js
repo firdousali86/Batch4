@@ -23,6 +23,8 @@ import {Text, View} from 'react-native';
 import {EventRegister} from 'react-native-event-listeners';
 
 import {PersistanceHelper} from './src/helpers';
+import store from './src/store';
+import {Provider} from 'react-redux';
 
 const Stack = createNativeStackNavigator();
 
@@ -107,9 +109,11 @@ function App() {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        {isUserLoggedIn ? getMainStack() : getAuthStack()}
-      </Stack.Navigator>
+      <Provider store={store}>
+        <Stack.Navigator>
+          {isUserLoggedIn ? getMainStack() : getAuthStack()}
+        </Stack.Navigator>
+      </Provider>
     </NavigationContainer>
   );
 }
