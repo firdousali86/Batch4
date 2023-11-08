@@ -6,6 +6,7 @@ import TestContext from './TestContext';
 import LoginScreen from './LoginScreen';
 import TestUseRef from './TestUseRef';
 import TestApiScreen from './TestApiScreen';
+import TestReduxScreen from './TestReduxScreen';
 
 export {
   DashboardScreen,
@@ -16,4 +17,5 @@ export {
   LoginScreen,
   TestUseRef,
   TestApiScreen,
+  TestReduxScreen,
 };

@@ -18,6 +18,7 @@ import {
   LoginScreen,
   TestUseRef,
   TestApiScreen,
+  TestReduxScreen,
 } from './src/containers';
 import {Text, View} from 'react-native';
 import {EventRegister} from 'react-native-event-listeners';
@@ -65,6 +66,11 @@ function App() {
   const getMainStack = () => {
     return (
       <Stack.Group>
+        <Stack.Screen
+          name="testReduxScreen"
+          component={TestReduxScreen}
+          options={{title: 'Test Redux'}}
+        />
         <Stack.Screen
           name="testApiScreen"
           component={TestApiScreen}
