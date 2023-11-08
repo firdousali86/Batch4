@@ -12,6 +12,7 @@ import {
   TestApiScreen,
   TestReduxScreen,
   CartScreen,
+  TestReduxClass,
 } from '../containers';
 import {useNavigation} from '@react-navigation/native';
 import {EventRegister} from 'react-native-event-listeners';
@@ -57,6 +58,21 @@ const Navigator = () => {
   const getMainStack = () => {
     return (
       <Stack.Group>
+        <Stack.Screen
+          name="testReduxClass"
+          component={TestReduxClass}
+          options={{
+            title: 'Test Redux Class impl',
+            headerRight: () => (
+              <Button
+                title={'Cart'}
+                onPress={() => {
+                  navigation.navigate('cartScreen');
+                }}
+              />
+            ),
+          }}
+        />
         <Stack.Screen
           name="testReduxScreen"
           component={TestReduxScreen}

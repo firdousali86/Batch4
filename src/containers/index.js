@@ -8,6 +8,7 @@ import TestUseRef from './TestUseRef';
 import TestApiScreen from './TestApiScreen';
 import TestReduxScreen from './TestReduxScreen';
 import CartScreen from './CartScreen';
+import TestReduxClass from './TestReduxClass';
 
 export {
   DashboardScreen,
@@ -20,4 +21,5 @@ export {
   TestApiScreen,
   TestReduxScreen,
   CartScreen,
+  TestReduxClass,
 };
