@@ -66,7 +66,7 @@ const Navigator = () => {
               <Button
                 title={'Cart'}
                 onPress={() => {
-                  navig;
+                  navigation.navigate('cartScreen');
                 }}
               />
             ),
