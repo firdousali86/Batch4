@@ -75,7 +75,17 @@ const Navigator = () => {
         <Stack.Screen
           name="cartScreen"
           component={CartScreen}
-          options={{title: 'Test Cart using redux'}}
+          options={{
+            title: 'Cart Screen',
+            headerRight: () => (
+              <Button
+                title={'Clear Cart'}
+                onPress={() => {
+                  //call clear cart action
+                }}
+              />
+            ),
+          }}
         />
         <Stack.Screen
           name="testApiScreen"
