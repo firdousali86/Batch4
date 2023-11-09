@@ -33,10 +33,20 @@ export default function TypescriptScreen() {
     {fullName: 'jshf kjh kj', email: 'kgk@hjkgh.d', address: 'hjg  jhg jkg '},
   ];
 
+  const add = (x: number, y: number): number => {
+    return x + y;
+  };
+
+  const concatenate = (x: any, y: any): string => {
+    return x + y;
+  };
+
   return (
     <View>
       <Text>index</Text>
       <Text>{myname}</Text>
+      <Text>{add(6, 7)}</Text>
+      <Text>{concatenate('firdous', 'ali')}</Text>
     </View>
   );
 }
