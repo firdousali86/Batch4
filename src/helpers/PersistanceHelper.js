@@ -1,9 +1,11 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import EncryptedStorage from 'react-native-encrypted-storage';
 
 class PersistanceHelper {
   setValue = (key, value) => {
     try {
-      AsyncStorage.setItem(key, value);
+      // AsyncStorage.setItem(key, value);
+      EncryptedStorage.setItem(key, value);
 
       console.log('written successfully');
     } catch (e) {
@@ -13,7 +15,8 @@ class PersistanceHelper {
 
   getValue = async (key, success, failure) => {
     try {
-      const value = await AsyncStorage.getItem(key);
+      // const value = await AsyncStorage.getItem(key);
+      const value = await EncryptedStorage.getItem(key);
 
       return value;
     } catch (ex) {
