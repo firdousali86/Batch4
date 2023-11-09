@@ -13,6 +13,7 @@ import {
   TestReduxScreen,
   CartScreen,
   TestReduxClass,
+  TypescriptScreen,
 } from '../containers';
 import {useNavigation} from '@react-navigation/native';
 import {EventRegister} from 'react-native-event-listeners';
@@ -58,6 +59,11 @@ const Navigator = () => {
   const getMainStack = () => {
     return (
       <Stack.Group>
+        <Stack.Screen
+          name="Typescript"
+          component={TypescriptScreen}
+          options={{title: 'Typescript'}}
+        />
         <Stack.Screen
           name="Dashboard"
           component={DashboardScreen}
