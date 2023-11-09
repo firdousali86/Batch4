@@ -1,7 +1,18 @@
-import {} from 'react';
+import {useEffect} from 'react';
 import {View, Text, TouchableOpacity, Button} from 'react-native';
+import * as Keychain from 'react-native-keychain';
 
 const SettingScreen = props => {
+  useEffect(() => {
+    Keychain.getInternetCredentials('com.itc.securestorage')
+      .then(data => {
+        console.log(data);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }, []);
+
   const {route} = props;
 
   return (

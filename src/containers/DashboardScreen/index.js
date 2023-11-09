@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import {PersistanceHelper} from '../../helpers';
 import {EventRegister} from 'react-native-event-listeners';
+import * as Keychain from 'react-native-keychain';
 
 const DashboardScreen = props => {
   const [city, setCity] = useState('');
@@ -27,6 +28,20 @@ const DashboardScreen = props => {
     console.log(props.route.params);
     console.log('=========');
   }, [props.route.params]);
+
+  useEffect(() => {
+    // Keychain.setInternetCredentials(
+    //   'com.itc.securestorage',
+    //   'myusername',
+    //   'mypassword123',
+    // )
+    //   .then(success => {
+    //     console.log(success);
+    //   })
+    //   .catch(error => {
+    //     console.log(error);
+    //   });
+  }, []);
 
   console.log('dashboard screen got rerendered');
 
