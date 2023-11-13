@@ -15,6 +15,7 @@ import {
   TestReduxClass,
   TypescriptScreen,
   SignupScreen,
+  ItemsCRUD,
 } from '../containers';
 import {useSelector} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
@@ -66,6 +67,11 @@ const Navigator = () => {
   const getMainStack = () => {
     return (
       <Stack.Group>
+        <Stack.Screen
+          name="itemsCRUD"
+          component={ItemsCRUD}
+          options={{title: 'Items CRUD'}}
+        />
         <Stack.Screen
           name="Typescript"
           component={TypescriptScreen}
