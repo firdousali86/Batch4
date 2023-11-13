@@ -10,7 +10,13 @@ const userSlice = createSlice({
       state.isFetching = true;
     },
     success: (state, action) => {
-      state.data = action.payload;
+      if (action.payload.userId) {
+        state.data = {...action.payload, accessToken: action.payload.id};
+        delete state.data.id;
+      } else {
+        state.data = action.payload;
+      }
+
       state.isFetching = false;
       state.failure = false;
       state.errorMessage = '';

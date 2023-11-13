@@ -43,9 +43,9 @@ const Navigator = () => {
 
   useEffect(() => {
     setIsUserLoggedIn(
-      user?.data?.id &&
-        typeof user?.data?.id === 'string' &&
-        user?.data?.id.length > 50
+      user?.data?.accessToken &&
+        typeof user?.data?.accessToken === 'string' &&
+        user?.data?.accessToken.length > 50
         ? true
         : false,
     );
