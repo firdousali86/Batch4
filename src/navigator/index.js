@@ -42,7 +42,13 @@ const Navigator = () => {
   }, []);
 
   useEffect(() => {
-    setIsUserLoggedIn(user?.data?.id ? true : false);
+    setIsUserLoggedIn(
+      user?.data?.id &&
+        typeof user?.data?.id === 'string' &&
+        user?.data?.id.length > 50
+        ? true
+        : false,
+    );
   }, [user]);
 
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(user?.data?.id);
