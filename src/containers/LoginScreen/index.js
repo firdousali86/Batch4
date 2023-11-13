@@ -1,5 +1,5 @@
 import {useState} from 'react';
-import {View, Text, TextInput, Button} from 'react-native';
+import {View, Text, TextInput, Button, ActivityIndicator} from 'react-native';
 import {PersistanceHelper, ApiHelper} from '../../helpers';
 // import {EventRegister} from 'react-native-event-listeners';
 import {useDispatch, useSelector} from 'react-redux';
@@ -8,11 +8,12 @@ import {kApiUserLogin} from '../../config/WebService';
 
 const {request, success, failure} = userActions;
 
-const LoginScreen = () => {
+const LoginScreen = props => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const dispatch = useDispatch();
+  const user = useSelector(state => state.user);
 
   return (
     <View>
@@ -55,6 +56,15 @@ const LoginScreen = () => {
           // EventRegister.emit('loginEvent', true);
         }}
       />
+
+      <Button
+        title={'Goto Signup'}
+        onPress={() => {
+          props.navigation.navigate('Signup');
+        }}
+      />
+
+      {user.isFetching && <ActivityIndicator />}
     </View>
   );
 };

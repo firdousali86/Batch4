@@ -16,6 +16,7 @@ import {
   TypescriptScreen,
   SignupScreen,
 } from '../containers';
+import {useSelector} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
 import {EventRegister} from 'react-native-event-listeners';
 import {PersistanceHelper} from '../helpers';
@@ -23,6 +24,8 @@ import {PersistanceHelper} from '../helpers';
 const Stack = createNativeStackNavigator();
 
 const Navigator = () => {
+  const user = useSelector(state => state.user);
+
   useEffect(() => {
     // EventRegister.addEventListener('loginEvent', data => {
     //   setIsUserLoggedIn(data);
@@ -38,14 +41,18 @@ const Navigator = () => {
     //   });
   }, []);
 
-  const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
+  useEffect(() => {
+    setIsUserLoggedIn(user?.data?.id ? true : false);
+  }, [user]);
+
+  const [isUserLoggedIn, setIsUserLoggedIn] = useState(user?.data?.id);
   const navigation = useNavigation();
 
   const getAuthStack = () => {
     return (
       <Stack.Group>
-        <Stack.Screen name="Signup" component={SignupScreen}></Stack.Screen>
         <Stack.Screen name="Login" component={LoginScreen}></Stack.Screen>
+        <Stack.Screen name="Signup" component={SignupScreen}></Stack.Screen>
       </Stack.Group>
     );
   };

@@ -40,7 +40,7 @@ export default function SignupScreen(props) {
         onChangeText={ct => {
           setEmail(ct);
         }}
-        defaultValue="Enter Email"
+        placeholder="Enter Email"
         style={{backgroundColor: 'yellow', height: 40, margin: 10, padding: 5}}
       />
       <TextInput
@@ -48,7 +48,7 @@ export default function SignupScreen(props) {
         onChangeText={ct => {
           setPassword(ct);
         }}
-        defaultValue="Enter Password"
+        placeholder="Enter Password"
         style={{backgroundColor: 'yellow', height: 40, margin: 10, padding: 5}}
       />
       {errorMsg && errorMsg.length > 0 && (
