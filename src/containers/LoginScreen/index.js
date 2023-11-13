@@ -1,19 +1,26 @@
 import {useState} from 'react';
 import {View, Text, TextInput, Button} from 'react-native';
-import {PersistanceHelper} from '../../helpers';
-import {EventRegister} from 'react-native-event-listeners';
+import {PersistanceHelper, ApiHelper} from '../../helpers';
+// import {EventRegister} from 'react-native-event-listeners';
+import {useDispatch, useSelector} from 'react-redux';
+import {userActions} from '../../features/user/userSlice';
+import {kApiUserLogin} from '../../config/WebService';
+
+const {request, success, failure} = userActions;
 
 const LoginScreen = () => {
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const dispatch = useDispatch();
 
   return (
     <View>
       <Text>Login</Text>
       <TextInput
-        value={username}
+        value={email}
         onChangeText={ct => {
-          setUsername(ct);
+          setEmail(ct);
         }}
         style={{height: 40, backgroundColor: 'yellow', margin: 10}}
       />
@@ -27,13 +34,25 @@ const LoginScreen = () => {
       />
       <Button
         title={'Login'}
-        onPress={() => {
-          PersistanceHelper.setObject('loginDetails', {username, password});
+        onPress={async () => {
+          // PersistanceHelper.setObject('loginDetails', {username, password});
+          dispatch(request({email, password}));
 
-          setUsername('');
-          setPassword('');
+          try {
+            const response = await ApiHelper.post(kApiUserLogin, {
+              email,
+              password,
+            });
 
-          EventRegister.emit('loginEvent', true);
+            dispatch(success(response));
+
+            setEmail('');
+            setPassword('');
+          } catch (error) {
+            dispatch(failure(error));
+          }
+
+          // EventRegister.emit('loginEvent', true);
         }}
       />
     </View>

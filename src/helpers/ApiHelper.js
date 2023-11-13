@@ -15,7 +15,23 @@ class ApiHelper {
     });
   };
 
-  post = () => {};
+  post = async (url, data, headers = {}) => {
+    url = kApiUrlEndpoint + url;
+
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        ...headers,
+      },
+      body: JSON.stringify(data),
+    }).then(x => x.json());
+
+    return new Promise((resolve, reject) => {
+      this.handlePromise(resolve, reject, response);
+    });
+  };
 
   put = () => {};
 

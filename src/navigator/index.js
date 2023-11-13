@@ -14,6 +14,7 @@ import {
   CartScreen,
   TestReduxClass,
   TypescriptScreen,
+  SignupScreen,
 } from '../containers';
 import {useNavigation} from '@react-navigation/native';
 import {EventRegister} from 'react-native-event-listeners';
@@ -23,19 +24,18 @@ const Stack = createNativeStackNavigator();
 
 const Navigator = () => {
   useEffect(() => {
-    EventRegister.addEventListener('loginEvent', data => {
-      setIsUserLoggedIn(data);
-    });
-
-    PersistanceHelper.getObject('loginDetails')
-      .then(data => {
-        if (data.username && data.password) {
-          setIsUserLoggedIn(true);
-        }
-      })
-      .catch(error => {
-        console.log(error);
-      });
+    // EventRegister.addEventListener('loginEvent', data => {
+    //   setIsUserLoggedIn(data);
+    // });
+    // PersistanceHelper.getObject('loginDetails')
+    //   .then(data => {
+    //     if (data.username && data.password) {
+    //       setIsUserLoggedIn(true);
+    //     }
+    //   })
+    //   .catch(error => {
+    //     console.log(error);
+    //   });
   }, []);
 
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
@@ -44,14 +44,8 @@ const Navigator = () => {
   const getAuthStack = () => {
     return (
       <Stack.Group>
+        <Stack.Screen name="Signup" component={SignupScreen}></Stack.Screen>
         <Stack.Screen name="Login" component={LoginScreen}></Stack.Screen>
-        <Stack.Screen
-          name="Signup"
-          component={() => (
-            <View>
-              <Text>Signup</Text>
-            </View>
-          )}></Stack.Screen>
       </Stack.Group>
     );
   };

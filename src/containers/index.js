@@ -10,6 +10,7 @@ import TestReduxScreen from './TestReduxScreen';
 import CartScreen from './CartScreen';
 import TestReduxClass from './TestReduxClass';
 import TypescriptScreen from './TypescriptScreen';
+import SignupScreen from './SignupScreen';
 
 export {
   DashboardScreen,
@@ -24,4 +25,5 @@ export {
   CartScreen,
   TestReduxClass,
   TypescriptScreen,
+  SignupScreen,
 };
