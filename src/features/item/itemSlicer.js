@@ -11,7 +11,13 @@ const itemSlice = createSlice({
     },
     success: (state, action) => {
       state.isFetching = false;
-      state.items = action.payload;
+
+      if (Array.isArray(action.payload)) {
+        state.items = action.payload;
+      } else {
+        state.items = [...state.items, action.payload];
+      }
+
       state.failure = false;
       state.errorMessage = '';
     },
