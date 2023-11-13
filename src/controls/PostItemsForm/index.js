@@ -6,7 +6,7 @@ import {itemActions} from '../../features/item/itemSlicer';
 
 import {ApiHelper} from '../../helpers';
 
-const {request, success, failure} = itemActions;
+const {request, success, failure, addItem} = itemActions;
 
 export default function PostItemsForm(props) {
   const dispatch = useDispatch();
@@ -60,7 +60,7 @@ export default function PostItemsForm(props) {
             {'X-Access-Token': user?.data?.accessToken},
           )
             .then(response => {
-              dispatch(success(response));
+              dispatch(addItem(response));
             })
             .catch(error => {
               dispatch(failure(error));

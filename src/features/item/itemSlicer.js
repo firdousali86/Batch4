@@ -26,7 +26,11 @@ const itemSlice = createSlice({
       state.errorMessage = action.payload;
       state.failure = true;
     },
-    addItem: (state, action) => {},
+    addItem: (state, action) => {
+      const itemToAdd = action.payload;
+
+      state.items.push(itemToAdd);
+    },
   },
 });
 
