@@ -9,7 +9,7 @@ import React, {useState, useEffect} from 'react';
 
 import {NavigationContainer} from '@react-navigation/native';
 
-import store from './src/store';
+import {store} from './src/store';
 import {Provider} from 'react-redux';
 import Navigator from './src/navigator';
 
