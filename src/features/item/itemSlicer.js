@@ -19,7 +19,7 @@ const itemSlice = createSlice({
       }
 
       state.failure = false;
-      state.errorMessage = '';
+      state.errorMessage = {};
     },
     failure: (state, action) => {
       state.isFetching = false;

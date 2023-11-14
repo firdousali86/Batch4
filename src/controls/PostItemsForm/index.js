@@ -24,7 +24,7 @@ export default function PostItemsForm(props) {
   };
 
   return (
-    <View>
+    <View style={{marginBottom: 20}}>
       <TextInput
         value={title}
         onChangeText={ct => {
@@ -52,19 +52,31 @@ export default function PostItemsForm(props) {
       <Button
         title="Submit"
         onPress={() => {
-          dispatch(request());
+          dispatch(
+            request({
+              url: kApiPostItems,
+              data: {title, image, details},
+              header: {'X-Access-Token': user?.data?.accessToken},
+              requestType: 'POST',
+            }),
+          );
 
-          ApiHelper.post(
-            kApiPostItems,
-            {title, image, details},
-            {'X-Access-Token': user?.data?.accessToken},
-          )
-            .then(response => {
-              dispatch(addItem(response));
-            })
-            .catch(error => {
-              dispatch(failure(error));
-            });
+          setTitle('');
+          setImage('');
+          setDetails('');
+
+          // ApiHelper.post(
+          //   kApiPostItems,
+          //   {title, image, details},
+          //   {'X-Access-Token': user?.data?.accessToken},
+          // )
+          //   .then(response => {
+          //     dispatch(addItem(response));
+
+          //   })
+          //   .catch(error => {
+          //     dispatch(failure(error));
+          //   });
         }}
       />
     </View>
