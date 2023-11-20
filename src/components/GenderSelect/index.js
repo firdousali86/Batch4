@@ -1,5 +1,5 @@
 import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 
 const genderArray = [
   {
@@ -10,7 +10,11 @@ const genderArray = [
 ];
 
 export default function GenderSelect(props) {
-  const [selectedGender, setSelectedGender] = useState(undefined);
+  const [selectedGender, setSelectedGender] = useState(props?.value);
+
+  useEffect(() => {
+    setSelectedGender(props?.value);
+  }, [props?.value]);
 
   let selectedCellStyle;
 
