@@ -56,7 +56,7 @@ export default function UserProfileEdit() {
         name="email"
         error={errors?.email}
       />
-      <GenderSelect />
+      <GenderSelect control={control} />
       <Button
         title={'Submit'}
         onPress={handleSubmit(formData => {

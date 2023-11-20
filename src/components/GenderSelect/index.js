@@ -1,7 +1,15 @@
 import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
 import React, {useState} from 'react';
 
-export default function GenderSelect() {
+const genderArray = [
+  {
+    key: 'male',
+    title: 'Male',
+  },
+  {key: 'female', title: 'Female'},
+];
+
+export default function GenderSelect(props) {
   const [selectedGender, setSelectedGender] = useState(undefined);
 
   let selectedCellStyle;
@@ -10,26 +18,26 @@ export default function GenderSelect() {
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity
-        onPress={() => {
-          setSelectedGender('male');
-        }}
-        style={selectedGender === 'male' ? selectedCellStyle : styles.cell}>
-        <Text>Male</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        onPress={() => {
-          setSelectedGender('female');
-        }}
-        style={selectedGender === 'female' ? selectedCellStyle : styles.cell}>
-        <Text>Female</Text>
-      </TouchableOpacity>
+      {genderArray.map(thisEl => {
+        return (
+          <TouchableOpacity
+            onPress={() => {
+              setSelectedGender(thisEl.key);
+
+              if (props.onValueSelected) {
+                props.onValueSelected(thisEl.key);
+              }
+            }}
+            style={
+              selectedGender === thisEl.key ? selectedCellStyle : styles.cell
+            }>
+            <Text>{thisEl.title}</Text>
+          </TouchableOpacity>
+        );
+      })}
     </View>
   );
 }
-
-//current selected value
-//on selected
 
 const styles = StyleSheet.create({
   container: {
