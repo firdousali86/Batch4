@@ -1,6 +1,6 @@
 import {View, Text, Button} from 'react-native';
 import React from 'react';
-import {InputComponent} from '../../components';
+import {InputComponent, GenderSelect} from '../../components';
 import {useForm} from 'react-hook-form';
 import * as yup from 'yup';
 import {yupResolver} from '@hookform/resolvers/yup';
@@ -56,6 +56,7 @@ export default function UserProfileEdit() {
         name="email"
         error={errors?.email}
       />
+      <GenderSelect />
       <Button
         title={'Submit'}
         onPress={handleSubmit(formData => {
