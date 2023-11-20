@@ -16,6 +16,7 @@ import {
   TypescriptScreen,
   SignupScreen,
   ItemsCRUD,
+  UserProfileEdit,
 } from '../containers';
 import {useSelector} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
@@ -67,6 +68,11 @@ const Navigator = () => {
   const getMainStack = () => {
     return (
       <Stack.Group>
+        <Stack.Screen
+          name="userProfileEdit"
+          component={UserProfileEdit}
+          options={{title: 'User Profile Edit'}}
+        />
         <Stack.Screen
           name="itemsCRUD"
           component={ItemsCRUD}
@@ -166,9 +172,7 @@ const Navigator = () => {
   };
 
   return (
-    <Stack.Navigator>
-      {isUserLoggedIn ? getMainStack() : getAuthStack()}
-    </Stack.Navigator>
+    <Stack.Navigator>{true ? getMainStack() : getAuthStack()}</Stack.Navigator>
   );
 };
 
