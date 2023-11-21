@@ -8,15 +8,11 @@ export const itemApi = createApi({
       query: () => 'items',
     }),
     postItem: builder.mutation({
-      query: newItem => ({
+      query: ({accessToken, ...rest}) => ({
         url: 'items',
         method: 'POST',
-        body: {
-          title: newItem.title,
-          image: newItem.image,
-          details: newItem.details,
-        },
-        headers: {'X-Access-Token': newItem.accessToken},
+        body: rest,
+        headers: {'X-Access-Token': accessToken},
       }),
     }),
   }),
