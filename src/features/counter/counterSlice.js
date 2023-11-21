@@ -1,4 +1,5 @@
 import {createSlice} from '@reduxjs/toolkit';
+import {addToCart} from '../cart/cartSlice';
 
 export const counterSlice = createSlice({
   name: 'counter',
@@ -15,6 +16,16 @@ export const counterSlice = createSlice({
     incrementByAmount: (state, action) => {
       state.value += action.payload;
     },
+  },
+  // extraReducers: {
+  //   ['cart/addToCart']: (state, action) => {
+  //     state.value += 1;
+  //   },
+  // },
+  extraReducers: builder => {
+    builder.addCase(addToCart, (state, action) => {
+      state.value += 1;
+    });
   },
 });
 

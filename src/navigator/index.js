@@ -70,6 +70,21 @@ const Navigator = () => {
     return (
       <Stack.Group>
         <Stack.Screen
+          name="testReduxScreen"
+          component={TestReduxScreen}
+          options={{
+            title: 'Test Redux',
+            headerRight: () => (
+              <Button
+                title={'Cart'}
+                onPress={() => {
+                  navigation.navigate('cartScreen');
+                }}
+              />
+            ),
+          }}
+        />
+        <Stack.Screen
           name="rTKQueryScreen"
           component={RTKQueryScreen}
           options={{title: 'RTK Query Screen'}}
@@ -114,21 +129,7 @@ const Navigator = () => {
             ),
           }}
         />
-        <Stack.Screen
-          name="testReduxScreen"
-          component={TestReduxScreen}
-          options={{
-            title: 'Test Redux',
-            headerRight: () => (
-              <Button
-                title={'Cart'}
-                onPress={() => {
-                  navigation.navigate('cartScreen');
-                }}
-              />
-            ),
-          }}
-        />
+
         <Stack.Screen
           name="cartScreen"
           component={CartScreen}
