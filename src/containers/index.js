@@ -13,6 +13,7 @@ import TypescriptScreen from './TypescriptScreen';
 import SignupScreen from './SignupScreen';
 import ItemsCRUD from './ItemsCRUD';
 import UserProfileEdit from './UserProfileEdit';
+import RTKQueryScreen from './RTKQueryScreen';
 
 export {
   DashboardScreen,
@@ -30,4 +31,5 @@ export {
   SignupScreen,
   ItemsCRUD,
   UserProfileEdit,
+  RTKQueryScreen,
 };

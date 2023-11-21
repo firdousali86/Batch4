@@ -9,6 +9,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import reducers from './features/reducers';
 import sagas from './sagas';
 import createSagaMiddleware from 'redux-saga';
+import {itemApi} from './services/itemApi';
 
 const isDebuggingInChrome = __DEV__ && !!window.navigator.userAgent;
 
@@ -30,7 +31,7 @@ const sagaMiddleware = createSagaMiddleware();
 export const store = configureStore({
   reducer: persistedReducer,
   middleware: getDefaultMiddleware =>
-    getDefaultMiddleware().concat(logger, sagaMiddleware),
+    getDefaultMiddleware().concat(logger, sagaMiddleware, itemApi.middleware),
 });
 
 sagaMiddleware.run(sagas);

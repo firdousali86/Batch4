@@ -17,6 +17,7 @@ import {
   SignupScreen,
   ItemsCRUD,
   UserProfileEdit,
+  RTKQueryScreen,
 } from '../containers';
 import {useSelector} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
@@ -68,6 +69,11 @@ const Navigator = () => {
   const getMainStack = () => {
     return (
       <Stack.Group>
+        <Stack.Screen
+          name="rTKQueryScreen"
+          component={RTKQueryScreen}
+          options={{title: 'RTK Query Screen'}}
+        />
         <Stack.Screen
           name="userProfileEdit"
           component={UserProfileEdit}
