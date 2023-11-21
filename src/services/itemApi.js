@@ -1,4 +1,5 @@
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react';
+import {PersistanceHelper} from '../helpers';
 
 export const itemApi = createApi({
   reducerPath: 'itemApi',
@@ -10,11 +11,11 @@ export const itemApi = createApi({
       providesTags: ['Item'],
     }),
     postItem: builder.mutation({
-      query: ({accessToken, ...rest}) => ({
+      query: newItem => ({
         url: 'items',
         method: 'POST',
-        body: rest,
-        headers: {'X-Access-Token': accessToken},
+        body: newItem,
+        headers: {'X-Access-Token': PersistanceHelper.accessToken},
       }),
       invalidatesTags: ['Item'],
     }),

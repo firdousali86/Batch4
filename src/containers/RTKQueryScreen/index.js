@@ -1,10 +1,8 @@
 import {StyleSheet, Text, View, ActivityIndicator, Button} from 'react-native';
 import React from 'react';
 import {useGetAllItemsQuery, usePostItemMutation} from '../../services/itemApi';
-import {useSelector} from 'react-redux';
 
 const RTKQueryScreen = () => {
-  const user = useSelector(state => state.user);
   const {data, error, isLoading} = useGetAllItemsQuery();
   const [postItem, {isLoading: isUpdating}] = usePostItemMutation();
 
@@ -23,7 +21,6 @@ const RTKQueryScreen = () => {
             title: 'string',
             image: 'string',
             details: 'string',
-            accessToken: user?.data?.accessToken,
           };
 
           postItem(newItem);

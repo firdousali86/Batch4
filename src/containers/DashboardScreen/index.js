@@ -12,8 +12,13 @@ import {
 import {PersistanceHelper} from '../../helpers';
 import {EventRegister} from 'react-native-event-listeners';
 import * as Keychain from 'react-native-keychain';
+import {userActions} from '../../features/user/userSlice';
+import {useDispatch} from 'react-redux';
+
+const {logout} = userActions;
 
 const DashboardScreen = props => {
+  const dispatch = useDispatch();
   const [city, setCity] = useState('');
 
   const [cityList, setCityList] = useState([
@@ -144,9 +149,9 @@ const DashboardScreen = props => {
       <Button
         title={'Logout'}
         onPress={() => {
-          PersistanceHelper.setObject('loginDetails', {});
-
-          EventRegister.emit('loginEvent', false);
+          dispatch(logout());
+          // PersistanceHelper.setObject('loginDetails', {});
+          // EventRegister.emit('loginEvent', false);
         }}
       />
     </SafeAreaView>

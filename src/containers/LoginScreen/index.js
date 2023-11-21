@@ -19,6 +19,7 @@ const LoginScreen = props => {
     <View>
       <Text>Login</Text>
       <TextInput
+        autoCapitalize="none"
         value={email}
         onChangeText={ct => {
           setEmail(ct);

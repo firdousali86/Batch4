@@ -1,4 +1,5 @@
 const {createSlice} = require('@reduxjs/toolkit');
+import {PersistanceHelper} from '../../helpers';
 
 const initialState = {};
 
@@ -11,8 +12,11 @@ const userSlice = createSlice({
     },
     success: (state, action) => {
       if (action.payload.userId) {
-        state.data = {...action.payload, accessToken: action.payload.id};
-        delete state.data.id;
+        const {id, ...rest} = action.payload;
+
+        PersistanceHelper.setValue('AT', id);
+        state.data = rest; //{...action.payload, accessToken: action.payload.id};
+        // delete state.data.id;
       } else {
         state.data = action.payload;
       }
@@ -28,6 +32,7 @@ const userSlice = createSlice({
     },
     logout: state => {
       state.data = {};
+      PersistanceHelper.accessToken = undefined;
     },
   },
 });

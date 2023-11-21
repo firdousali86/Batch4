@@ -42,19 +42,23 @@ const Navigator = () => {
     //   .catch(error => {
     //     console.log(error);
     //   });
+
+    PersistanceHelper.getValue('AT').then(data => {
+      PersistanceHelper.accessToken = data;
+    });
   }, []);
 
   useEffect(() => {
     setIsUserLoggedIn(
-      user?.data?.accessToken &&
-        typeof user?.data?.accessToken === 'string' &&
-        user?.data?.accessToken.length > 50
+      user?.data?.created && user?.data?.ttl && user?.data?.userId
         ? true
         : false,
     );
   }, [user]);
 
-  const [isUserLoggedIn, setIsUserLoggedIn] = useState(user?.data?.id);
+  const [isUserLoggedIn, setIsUserLoggedIn] = useState(
+    user?.data?.created && user?.data?.ttl && user?.data?.userId ? true : false,
+  );
   const navigation = useNavigation();
 
   const getAuthStack = () => {
@@ -70,6 +74,16 @@ const Navigator = () => {
     return (
       <Stack.Group>
         <Stack.Screen
+          name="rTKQueryScreen"
+          component={RTKQueryScreen}
+          options={{title: 'RTK Query Screen'}}
+        />
+        <Stack.Screen
+          name="Dashboard"
+          component={DashboardScreen}
+          options={{title: 'Overview'}}
+        />
+        <Stack.Screen
           name="testReduxScreen"
           component={TestReduxScreen}
           options={{
@@ -84,11 +98,7 @@ const Navigator = () => {
             ),
           }}
         />
-        <Stack.Screen
-          name="rTKQueryScreen"
-          component={RTKQueryScreen}
-          options={{title: 'RTK Query Screen'}}
-        />
+
         <Stack.Screen
           name="userProfileEdit"
           component={UserProfileEdit}
@@ -104,11 +114,7 @@ const Navigator = () => {
           component={TypescriptScreen}
           options={{title: 'Typescript'}}
         />
-        <Stack.Screen
-          name="Dashboard"
-          component={DashboardScreen}
-          options={{title: 'Overview'}}
-        />
+
         <Stack.Screen
           name="testApiScreen"
           component={TestApiScreen}
@@ -179,7 +185,9 @@ const Navigator = () => {
   };
 
   return (
-    <Stack.Navigator>{true ? getMainStack() : getAuthStack()}</Stack.Navigator>
+    <Stack.Navigator>
+      {isUserLoggedIn ? getMainStack() : getAuthStack()}
+    </Stack.Navigator>
   );
 };
 
