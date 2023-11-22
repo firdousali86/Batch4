@@ -14,6 +14,7 @@ import SignupScreen from './SignupScreen';
 import ItemsCRUD from './ItemsCRUD';
 import UserProfileEdit from './UserProfileEdit';
 import RTKQueryScreen from './RTKQueryScreen';
+import MapScreen from './MapScreen';
 
 export {
   DashboardScreen,
@@ -32,4 +33,5 @@ export {
   ItemsCRUD,
   UserProfileEdit,
   RTKQueryScreen,
+  MapScreen,
 };

@@ -18,6 +18,7 @@ import {
   ItemsCRUD,
   UserProfileEdit,
   RTKQueryScreen,
+  MapScreen,
 } from '../containers';
 import {useSelector} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
@@ -73,6 +74,11 @@ const Navigator = () => {
   const getMainStack = () => {
     return (
       <Stack.Group>
+        <Stack.Screen
+          name="mapScreen"
+          component={MapScreen}
+          options={{title: 'Map Screen'}}
+        />
         <Stack.Screen
           name="rTKQueryScreen"
           component={RTKQueryScreen}
@@ -185,9 +191,7 @@ const Navigator = () => {
   };
 
   return (
-    <Stack.Navigator>
-      {isUserLoggedIn ? getMainStack() : getAuthStack()}
-    </Stack.Navigator>
+    <Stack.Navigator>{true ? getMainStack() : getAuthStack()}</Stack.Navigator>
   );
 };
 
