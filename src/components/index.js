@@ -4,6 +4,7 @@ import MyTestFuncComponent from './MyTestFuncComponent';
 import UserProfile from './UserProfile';
 import InputComponent from './InputComponent';
 import GenderSelect from './GenderSelect';
+import MapViewControl from './MapViewControl';
 
 export {
   MyHOC,
@@ -12,4 +13,5 @@ export {
   UserProfile,
   InputComponent,
   GenderSelect,
+  MapViewControl,
 };
