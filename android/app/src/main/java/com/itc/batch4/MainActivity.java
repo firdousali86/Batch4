@@ -1,4 +1,4 @@
-package com.batch4;
+package com.itc.batch4;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;

@@ -12,20 +12,10 @@
 	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
-
 	<key>CFBundleName</key>
 	<string>$(PRODUCT_NAME)</string>
-	
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
-
-	<key>NSLocationAlwaysUsageDescription</key>
-    <string>Program requires GPS to track cars and job orders</string>
-    <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-    <string>Program requires GPS to track cars and job orders</string>
-    <key>NSLocationWhenInUseUsageDescription</key>
-    <string>Program requires GPS to track cars and job orders</string>
-
 	<key>CFBundleShortVersionString</key>
 	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleSignature</key>
@@ -45,6 +35,10 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Program requires GPS to track cars and job orders</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Program requires GPS to track cars and job orders</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
 	<key>UILaunchStoryboardName</key>
@@ -53,16 +47,13 @@
 	<array>
 		<string>armv7</string>
 	</array>
-
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-
 </dict>
 </plist>

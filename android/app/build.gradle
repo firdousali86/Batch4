@@ -75,9 +75,9 @@ android {
 
     compileSdkVersion rootProject.ext.compileSdkVersion
 
-    namespace "com.batch4"
+    namespace "com.itc.batch4"
     defaultConfig {
-        applicationId "com.batch4"
+        applicationId "com.itc.batch4"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

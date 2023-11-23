@@ -76,14 +76,14 @@ const Navigator = () => {
     return (
       <Stack.Group>
         <Stack.Screen
-          name="locationTestScreen"
-          component={LocationTestScreen}
-          options={{title: 'Location Test Screen'}}
-        />
-        <Stack.Screen
           name="mapScreen"
           component={MapScreen}
           options={{title: 'Map Screen'}}
+        />
+        <Stack.Screen
+          name="locationTestScreen"
+          component={LocationTestScreen}
+          options={{title: 'Location Test Screen'}}
         />
         <Stack.Screen
           name="rTKQueryScreen"
