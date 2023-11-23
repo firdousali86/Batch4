@@ -19,6 +19,7 @@ import {
   UserProfileEdit,
   RTKQueryScreen,
   MapScreen,
+  LocationTestScreen,
 } from '../containers';
 import {useSelector} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
@@ -74,6 +75,11 @@ const Navigator = () => {
   const getMainStack = () => {
     return (
       <Stack.Group>
+        <Stack.Screen
+          name="locationTestScreen"
+          component={LocationTestScreen}
+          options={{title: 'Location Test Screen'}}
+        />
         <Stack.Screen
           name="mapScreen"
           component={MapScreen}
