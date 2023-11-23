@@ -10,6 +10,7 @@ const MapViewControl = props => {
         onLongPress={props.onLongPress}
         provider={PROVIDER_GOOGLE}
         style={styles.map}
+        showsUserLocation
         region={{
           latitude: 37.78825,
           longitude: -122.4324,
