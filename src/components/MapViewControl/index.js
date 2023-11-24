@@ -1,9 +1,15 @@
 import {StyleSheet, Text, View} from 'react-native';
-import React, {useState} from 'react';
+import React, {useState, forwardRef, useImperativeHandle} from 'react';
 import MapView, {PROVIDER_GOOGLE, Marker, Callout} from 'react-native-maps';
 
-const MapViewControl = props => {
+const MapViewControl = forwardRef((props, ref) => {
   const [isMapReady, setIsMapReady] = useState(false);
+
+  useImperativeHandle(ref, () => ({
+    mytestmethod: () => {
+      console.log('this is to check if it runs');
+    },
+  }));
 
   return (
     <View style={{flex: 1}}>
@@ -58,7 +64,7 @@ const MapViewControl = props => {
       </MapView>
     </View>
   );
-};
+});
 
 export default MapViewControl;
 
