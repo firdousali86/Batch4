@@ -18,7 +18,7 @@ function* watchRequest() {
 
       response = yield call(callPostRequest, payload.url, payload.data);
 
-      yield put(success(response));
+      yield put(success(response.data));
     } catch (err) {
       yield put(failure(err.message));
 

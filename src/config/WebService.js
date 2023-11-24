@@ -7,6 +7,8 @@ export const kApiUserLogin = '/Users/login';
 export const kApiPostItems = '/items';
 export const kApiGetItems = '/items';
 
+export const API_TIMEOUT = 60000;
+
 export const ERROR_NETWORK_NOT_AVAILBLE = {
   title: 'Oops!',
   message:

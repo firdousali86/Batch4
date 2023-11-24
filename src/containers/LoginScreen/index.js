@@ -38,21 +38,21 @@ const LoginScreen = props => {
         title={'Login'}
         onPress={async () => {
           // PersistanceHelper.setObject('loginDetails', {username, password});
-          dispatch(request({email, password}));
+          dispatch(request({url: kApiUserLogin, data: {email, password}}));
 
-          try {
-            const response = await ApiHelper.post(kApiUserLogin, {
-              email,
-              password,
-            });
+          // try {
+          //   const response = await ApiHelper.post(kApiUserLogin, {
+          //     email,
+          //     password,
+          //   });
 
-            dispatch(success(response));
+          //   dispatch(success(response));
 
-            setEmail('');
-            setPassword('');
-          } catch (error) {
-            dispatch(failure(error));
-          }
+          //   setEmail('');
+          //   setPassword('');
+          // } catch (error) {
+          //   dispatch(failure(error));
+          // }
 
           // EventRegister.emit('loginEvent', true);
         }}
