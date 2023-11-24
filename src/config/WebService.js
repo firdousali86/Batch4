@@ -1,5 +1,5 @@
 // export const kApiUrlEndpoint = 'https://jsonplaceholder.typicode.com';
-export const kApiUrlEndpoint = 'http://localhost:3000/api';
+export const kApiUrlEndpoint = 'http://192.168.0.35:3000/api';
 
 export const kApiTodos = '/todos';
 export const kApiUserSignup = '/Users';
