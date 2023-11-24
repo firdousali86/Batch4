@@ -1,19 +1,32 @@
 import {StyleSheet, Text, View} from 'react-native';
-import React, {useState, forwardRef, useImperativeHandle} from 'react';
+import React, {useState, forwardRef, useImperativeHandle, useRef} from 'react';
 import MapView, {PROVIDER_GOOGLE, Marker, Callout} from 'react-native-maps';
 
 const MapViewControl = forwardRef((props, ref) => {
+  const mapRef = useRef(null);
   const [isMapReady, setIsMapReady] = useState(false);
 
   useImperativeHandle(ref, () => ({
     mytestmethod: () => {
       console.log('this is to check if it runs');
+
+      // belowmapsref.current.animateToRegion(someregion)
+      mapRef.current.animateToRegion(
+        {
+          latitude: 54.9620513,
+          longitude: -1.5076673,
+          latitudeDelta: 0.015,
+          longitudeDelta: 0.0121,
+        },
+        500,
+      );
     },
   }));
 
   return (
     <View style={{flex: 1}}>
       <MapView
+        ref={mapRef}
         showsMyLocationButton
         onLongPress={props.onLongPress}
         provider={PROVIDER_GOOGLE}
