@@ -24,7 +24,7 @@ import {
 import {useSelector} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
 import {EventRegister} from 'react-native-event-listeners';
-import {PersistanceHelper} from '../helpers';
+import {PersistanceHelper, NotificationHelper} from '../helpers';
 
 const Stack = createNativeStackNavigator();
 
@@ -44,6 +44,10 @@ const Navigator = () => {
     //   .catch(error => {
     //     console.log(error);
     //   });
+
+    NotificationHelper.initializeFCM();
+    NotificationHelper.checkFCMPermission();
+    NotificationHelper.getToken();
 
     PersistanceHelper.getValue('AT').then(data => {
       PersistanceHelper.accessToken = data;
@@ -197,7 +201,9 @@ const Navigator = () => {
   };
 
   return (
-    <Stack.Navigator>{true ? getMainStack() : getAuthStack()}</Stack.Navigator>
+    <Stack.Navigator>
+      {isUserLoggedIn ? getMainStack() : getAuthStack()}
+    </Stack.Navigator>
   );
 };
 
