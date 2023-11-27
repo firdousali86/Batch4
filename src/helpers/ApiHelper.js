@@ -6,6 +6,14 @@ import {
 } from '../config/WebService';
 import {create} from 'apisauce';
 
+const getUpdatedHeader = headers => {
+  return {
+    ...headers,
+    Authorization:
+      'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4MzJjOTYzNjY5NzU3OGEwNTI5MWM4NWE5MWYyNmFmMSIsInN1YiI6IjY1NDM4MzM0ZTFhZDc5MDE0YmQyMGM3NSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.huykm4g9c8OAVMFXGW498rMtzZJT2XYKunRmZvinG70',
+  };
+};
+
 const api = create({
   baseURL: kApiUrlEndpoint,
   headers: {
@@ -18,7 +26,9 @@ const api = create({
 
 class ApiHelper {
   get = async (url, data, headers) => {
-    const response = await api.get(url, data, {headers: headers});
+    const updatedHeader = getUpdatedHeader(headers);
+
+    const response = await api.get(url, data, {headers: updatedHeader});
 
     return new Promise((resolve, reject) => {
       this.handlePromise(resolve, reject, response);
@@ -26,7 +36,9 @@ class ApiHelper {
   };
 
   post = async (url, data, headers = {}) => {
-    const response = await api.post(url, data, {headers: headers});
+    const updatedHeader = getUpdatedHeader(headers);
+
+    const response = await api.post(url, data, {headers: updatedHeader});
 
     return new Promise((resolve, reject) => {
       this.handlePromise(resolve, reject, response);
