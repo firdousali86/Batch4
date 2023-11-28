@@ -80,15 +80,16 @@ const Navigator = () => {
     return (
       <Stack.Group>
         <Stack.Screen
-          name="mapScreen"
-          component={MapScreen}
-          options={{title: 'Map Screen'}}
-        />
-        <Stack.Screen
           name="locationTestScreen"
           component={LocationTestScreen}
           options={{title: 'Location Test Screen'}}
         />
+        <Stack.Screen
+          name="mapScreen"
+          component={MapScreen}
+          options={{title: 'Map Screen'}}
+        />
+
         <Stack.Screen
           name="rTKQueryScreen"
           component={RTKQueryScreen}
@@ -201,9 +202,7 @@ const Navigator = () => {
   };
 
   return (
-    <Stack.Navigator>
-      {isUserLoggedIn ? getMainStack() : getAuthStack()}
-    </Stack.Navigator>
+    <Stack.Navigator>{true ? getMainStack() : getAuthStack()}</Stack.Navigator>
   );
 };
 

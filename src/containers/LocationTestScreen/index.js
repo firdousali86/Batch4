@@ -10,7 +10,7 @@ export default function LocationTestScreen() {
   const fetchLocation = () => {
     LocationHelper.checkLocationPermission(
       () => {
-        LocationHelper.fetchLocation(
+        LocationHelper.trackUserLocation(
           position => {
             console.log(position);
           },
@@ -19,7 +19,9 @@ export default function LocationTestScreen() {
           },
         );
       },
-      () => {},
+      error => {
+        console.log(error);
+      },
     );
   };
 

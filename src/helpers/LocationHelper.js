@@ -1,28 +1,47 @@
-import Geolocation from 'react-native-geolocation-service';
+import Geolocation from '@react-native-community/geolocation';
 import {Platform} from 'react-native';
 import {request, check, PERMISSIONS, RESULTS} from 'react-native-permissions';
 
 class LocationHelper {
   fetchLocation = (success, failure) => {
     Geolocation.getCurrentPosition(
-      position => {
-        success(position);
+      locationData => {
+        success(locationData);
       },
       error => {
-        // See error code charts below.
         failure(error);
       },
-      {enableHighAccuracy: true, timeout: 5000, maximumAge: 1000},
+      {
+        enableHighAccuracy: false,
+      },
     );
   };
 
-  trackUserLocation = (success, failure) => {};
+  trackUserLocation = (success, failure) => {
+    Geolocation.watchPosition(
+      locationData => {
+        success(locationData);
+      },
+      error => {
+        failure(error);
+      },
+      {
+        interval: 1000,
+        // fastestInterval?: number;
+        // timeout: 5000,
+        // maximumAge: 2000,
+        enableHighAccuracy: false,
+        // distanceFilter?: number;
+        useSignificantChanges: true,
+      },
+    );
+  };
 
   checkLocationPermission = (success, failure) => {
     check(
       Platform.select({
         ios: PERMISSIONS.IOS.LOCATION_WHEN_IN_USE,
-        android: PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION,
+        android: PERMISSIONS.ANDROID.ACCESS_COARSE_LOCATION,
       }),
     )
       .then(result => {
@@ -46,7 +65,7 @@ class LocationHelper {
   requestPermission = (success, failure) => {
     request(
       Platform.select({
-        android: PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION,
+        android: PERMISSIONS.ANDROID.ACCESS_COARSE_LOCATION,
         ios: PERMISSIONS.IOS.LOCATION_WHEN_IN_USE,
       }),
     )
