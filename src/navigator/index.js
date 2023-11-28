@@ -26,11 +26,22 @@ import {useSelector} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
 import {EventRegister} from 'react-native-event-listeners';
 import {PersistanceHelper, NotificationHelper} from '../helpers';
+import {addSslPinningErrorListener} from 'react-native-ssl-public-key-pinning';
 
 const Stack = createNativeStackNavigator();
 
 const Navigator = () => {
   const user = useSelector(state => state.user);
+
+  useEffect(() => {
+    const subscription = addSslPinningErrorListener(error => {
+      // Triggered when an SSL pinning error occurs due to pin mismatch
+      console.log(error.serverHostname);
+    });
+    return () => {
+      subscription.remove();
+    };
+  }, []);
 
   useEffect(() => {
     // EventRegister.addEventListener('loginEvent', data => {
@@ -81,15 +92,16 @@ const Navigator = () => {
     return (
       <Stack.Group>
         <Stack.Screen
-          name="locationTestScreen"
-          component={LocationTestScreen}
-          options={{title: 'Location Test Screen'}}
-        />
-        <Stack.Screen
           name="testSSLPinning"
           component={TestSSLPinning}
           options={{title: 'Test SSL Pinning'}}
         />
+        <Stack.Screen
+          name="locationTestScreen"
+          component={LocationTestScreen}
+          options={{title: 'Location Test Screen'}}
+        />
+
         <Stack.Screen
           name="itemsCRUD"
           component={ItemsCRUD}

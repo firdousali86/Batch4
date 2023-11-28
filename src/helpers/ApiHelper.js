@@ -6,6 +6,25 @@ import {
   API_TIMEOUT,
 } from '../config/WebService';
 import {create} from 'apisauce';
+import {initializeSslPinning} from 'react-native-ssl-public-key-pinning';
+
+initializeSslPinning({
+  'themoviedb.org': {
+    includeSubdomains: true,
+    publicKeyHashes: [
+      '5VLcahb6x4EvvFrCF2TePZulWqrLHS2jCg9Ywv6JHog=',
+      '47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=',
+      // 'QXnt2YHvdHR3tJYmQIr0Paosp6t/nggsEGD4QJZ3Q0g=',
+      // 'mEflZT5enoR1FuXLgYYGqnVEoZvmf9c2bVBpiOjYQ0c=',
+    ],
+  },
+})
+  .then(success => {
+    console.log(success);
+  })
+  .catch(err => {
+    console.log(err);
+  });
 
 const getUpdatedHeader = headers => {
   return {
