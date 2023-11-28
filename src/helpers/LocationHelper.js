@@ -3,6 +3,14 @@ import {Platform} from 'react-native';
 import {request, check, PERMISSIONS, RESULTS} from 'react-native-permissions';
 
 class LocationHelper {
+  watchId = undefined;
+
+  unMount = () => {
+    if (this.watchId) {
+      Geolocation.clearWatch(this.watchId);
+    }
+  };
+
   fetchLocation = (success, failure) => {
     Geolocation.getCurrentPosition(
       locationData => {
@@ -18,7 +26,7 @@ class LocationHelper {
   };
 
   trackUserLocation = (success, failure) => {
-    Geolocation.watchPosition(
+    this.watchId = Geolocation.watchPosition(
       locationData => {
         success(locationData);
       },
