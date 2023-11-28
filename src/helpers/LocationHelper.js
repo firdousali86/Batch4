@@ -20,7 +20,7 @@ class LocationHelper {
         failure(error);
       },
       {
-        enableHighAccuracy: false,
+        enableHighAccuracy: true,
       },
     );
   };
@@ -38,7 +38,7 @@ class LocationHelper {
         // fastestInterval?: number;
         // timeout: 5000,
         // maximumAge: 2000,
-        enableHighAccuracy: false,
+        enableHighAccuracy: true,
         // distanceFilter?: number;
         useSignificantChanges: true,
       },

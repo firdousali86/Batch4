@@ -81,6 +81,11 @@ const Navigator = () => {
     return (
       <Stack.Group>
         <Stack.Screen
+          name="locationTestScreen"
+          component={LocationTestScreen}
+          options={{title: 'Location Test Screen'}}
+        />
+        <Stack.Screen
           name="testSSLPinning"
           component={TestSSLPinning}
           options={{title: 'Test SSL Pinning'}}
@@ -90,11 +95,7 @@ const Navigator = () => {
           component={ItemsCRUD}
           options={{title: 'Items CRUD'}}
         />
-        <Stack.Screen
-          name="locationTestScreen"
-          component={LocationTestScreen}
-          options={{title: 'Location Test Screen'}}
-        />
+
         <Stack.Screen
           name="mapScreen"
           component={MapScreen}
