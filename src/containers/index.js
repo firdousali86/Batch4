@@ -16,6 +16,7 @@ import UserProfileEdit from './UserProfileEdit';
 import RTKQueryScreen from './RTKQueryScreen';
 import MapScreen from './MapScreen';
 import LocationTestScreen from './LocationTestScreen';
+import TestSSLPinning from './TestSSLPinning';
 
 export {
   DashboardScreen,
@@ -36,4 +37,5 @@ export {
   RTKQueryScreen,
   MapScreen,
   LocationTestScreen,
+  TestSSLPinning,
 };

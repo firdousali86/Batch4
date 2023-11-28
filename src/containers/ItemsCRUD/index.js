@@ -3,7 +3,6 @@ import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {itemActions} from '../../features/item/itemSlicer';
 import {kApiGetItems} from '../../config/WebService';
-import {ApiHelper} from '../../helpers';
 import PostItemsForm from '../../controls/PostItemsForm';
 
 const {request, success, failure} = itemActions;

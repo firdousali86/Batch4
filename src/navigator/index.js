@@ -20,6 +20,7 @@ import {
   RTKQueryScreen,
   MapScreen,
   LocationTestScreen,
+  TestSSLPinning,
 } from '../containers';
 import {useSelector} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
@@ -80,6 +81,16 @@ const Navigator = () => {
     return (
       <Stack.Group>
         <Stack.Screen
+          name="testSSLPinning"
+          component={TestSSLPinning}
+          options={{title: 'Test SSL Pinning'}}
+        />
+        <Stack.Screen
+          name="itemsCRUD"
+          component={ItemsCRUD}
+          options={{title: 'Items CRUD'}}
+        />
+        <Stack.Screen
           name="locationTestScreen"
           component={LocationTestScreen}
           options={{title: 'Location Test Screen'}}
@@ -121,11 +132,7 @@ const Navigator = () => {
           component={UserProfileEdit}
           options={{title: 'User Profile Edit'}}
         />
-        <Stack.Screen
-          name="itemsCRUD"
-          component={ItemsCRUD}
-          options={{title: 'Items CRUD'}}
-        />
+
         <Stack.Screen
           name="Typescript"
           component={TypescriptScreen}

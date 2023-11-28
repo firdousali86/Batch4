@@ -1,5 +1,6 @@
 import {
   kApiUrlEndpoint,
+  kApiUrlEndpoint2,
   ERROR_NETWORK_NOT_AVAILBLE,
   ERROR_WRONG_CREDENTIALS,
   API_TIMEOUT,
@@ -15,7 +16,7 @@ const getUpdatedHeader = headers => {
 };
 
 const api = create({
-  baseURL: kApiUrlEndpoint,
+  baseURL: kApiUrlEndpoint2,
   headers: {
     'Content-Type': 'application/json',
     Accept: 'application/json',

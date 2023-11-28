@@ -1,11 +1,15 @@
 // export const kApiUrlEndpoint = 'https://jsonplaceholder.typicode.com';
 export const kApiUrlEndpoint = 'http://192.168.0.35:3000/api';
+export const kApiUrlEndpoint2 = 'https://api.themoviedb.org';
 
 export const kApiTodos = '/todos';
 export const kApiUserSignup = '/Users';
 export const kApiUserLogin = '/Users/login';
 export const kApiPostItems = '/items';
 export const kApiGetItems = '/items';
+
+export const kApiGetPopularMovies =
+  '/3/movie/popular?language=en-US&page=1&limit=50';
 
 export const API_TIMEOUT = 60000;
 
