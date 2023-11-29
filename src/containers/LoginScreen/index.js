@@ -5,6 +5,7 @@ import {PersistanceHelper, ApiHelper} from '../../helpers';
 import {useDispatch, useSelector} from 'react-redux';
 import {userActions} from '../../features/user/userSlice';
 import {kApiUserLogin} from '../../config/WebService';
+import auth from '@react-native-firebase/auth';
 
 const {request, success, failure} = userActions;
 
@@ -38,7 +39,7 @@ const LoginScreen = props => {
         title={'Login'}
         onPress={async () => {
           // PersistanceHelper.setObject('loginDetails', {username, password});
-          dispatch(request({url: kApiUserLogin, data: {email, password}}));
+          // dispatch(request({url: kApiUserLogin, data: {email, password}}));
 
           // try {
           //   const response = await ApiHelper.post(kApiUserLogin, {
@@ -55,6 +56,15 @@ const LoginScreen = props => {
           // }
 
           // EventRegister.emit('loginEvent', true);
+
+          auth()
+            .signInWithEmailAndPassword(email, password)
+            .then(data => {
+              console.log(data);
+            })
+            .catch(err => {
+              console.log(err);
+            });
         }}
       />
 

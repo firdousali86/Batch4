@@ -14,6 +14,7 @@ import {EventRegister} from 'react-native-event-listeners';
 import * as Keychain from 'react-native-keychain';
 import {userActions} from '../../features/user/userSlice';
 import {useDispatch} from 'react-redux';
+import auth from '@react-native-firebase/auth';
 
 const {logout} = userActions;
 
@@ -149,7 +150,11 @@ const DashboardScreen = props => {
       <Button
         title={'Logout'}
         onPress={() => {
-          dispatch(logout());
+          auth()
+            .signOut()
+            .then(() => console.log('User signed out!'));
+
+          // dispatch(logout());
           // PersistanceHelper.setObject('loginDetails', {});
           // EventRegister.emit('loginEvent', false);
         }}

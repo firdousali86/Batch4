@@ -27,11 +27,13 @@ import {useNavigation} from '@react-navigation/native';
 import {EventRegister} from 'react-native-event-listeners';
 import {PersistanceHelper, NotificationHelper} from '../helpers';
 import {addSslPinningErrorListener} from 'react-native-ssl-public-key-pinning';
+import auth from '@react-native-firebase/auth';
 
 const Stack = createNativeStackNavigator();
 
 const Navigator = () => {
-  const user = useSelector(state => state.user);
+  // const user = useSelector(state => state.user);
+  const [user, setUser] = useState(undefined);
 
   useEffect(() => {
     const subscription = addSslPinningErrorListener(error => {
@@ -67,16 +69,29 @@ const Navigator = () => {
   }, []);
 
   useEffect(() => {
-    setIsUserLoggedIn(
-      user?.data?.created && user?.data?.ttl && user?.data?.userId
-        ? true
-        : false,
-    );
+    // setIsUserLoggedIn(
+    //   user?.data?.created && user?.data?.ttl && user?.data?.userId
+    //     ? true
+    //     : false,
+    // );
+
+    setIsUserLoggedIn(user?._user?.uid ? true : false);
   }, [user]);
 
+  useEffect(() => {
+    const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
+    return subscriber; // unsubscribe on unmount
+  }, []);
+
+  function onAuthStateChanged(user) {
+    setUser(user);
+  }
+
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(
-    user?.data?.created && user?.data?.ttl && user?.data?.userId ? true : false,
+    // user?.data?.created && user?.data?.ttl && user?.data?.userId ? true : false,
+    false,
   );
+
   const navigation = useNavigation();
 
   const getAuthStack = () => {
@@ -91,6 +106,11 @@ const Navigator = () => {
   const getMainStack = () => {
     return (
       <Stack.Group>
+        <Stack.Screen
+          name="Dashboard"
+          component={DashboardScreen}
+          options={{title: 'Overview'}}
+        />
         <Stack.Screen
           name="testSSLPinning"
           component={TestSSLPinning}
@@ -119,11 +139,7 @@ const Navigator = () => {
           component={RTKQueryScreen}
           options={{title: 'RTK Query Screen'}}
         />
-        <Stack.Screen
-          name="Dashboard"
-          component={DashboardScreen}
-          options={{title: 'Overview'}}
-        />
+
         <Stack.Screen
           name="testReduxScreen"
           component={TestReduxScreen}
@@ -222,7 +238,9 @@ const Navigator = () => {
   };
 
   return (
-    <Stack.Navigator>{true ? getMainStack() : getAuthStack()}</Stack.Navigator>
+    <Stack.Navigator>
+      {isUserLoggedIn ? getMainStack() : getAuthStack()}
+    </Stack.Navigator>
   );
 };
 

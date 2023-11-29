@@ -11,6 +11,7 @@ import {userActions} from '../../features/user/userSlice';
 import {useDispatch, useSelector} from 'react-redux';
 import {ApiHelper} from '../../helpers';
 import {kApiUserSignup} from '../../config/WebService';
+import auth from '@react-native-firebase/auth';
 
 const {request, success, failure} = userActions;
 
@@ -36,6 +37,7 @@ export default function SignupScreen(props) {
   return (
     <View>
       <TextInput
+        autoCapitalize="none"
         value={email}
         onChangeText={ct => {
           setEmail(ct);
@@ -57,17 +59,32 @@ export default function SignupScreen(props) {
       <Button
         title={'Signup'}
         onPress={() => {
-          dispatch(request({email, password}));
-
-          ApiHelper.post(kApiUserSignup, {email, password})
-            .then(response => {
-              dispatch(success(response));
-
-              props.navigation.navigate('Login');
+          auth()
+            .createUserWithEmailAndPassword(email, password)
+            .then(() => {
+              console.log('User account created & signed in!');
             })
             .catch(error => {
-              dispatch(failure(error));
+              if (error.code === 'auth/email-already-in-use') {
+                console.log('That email address is already in use!');
+              }
+
+              if (error.code === 'auth/invalid-email') {
+                console.log('That email address is invalid!');
+              }
+
+              console.error(error);
             });
+
+          // dispatch(request({email, password}));
+          // ApiHelper.post(kApiUserSignup, {email, password})
+          //   .then(response => {
+          //     dispatch(success(response));
+          //     props.navigation.navigate('Login');
+          //   })
+          //   .catch(error => {
+          //     dispatch(failure(error));
+          //   });
         }}
       />
       {user.isFetching && <ActivityIndicator />}

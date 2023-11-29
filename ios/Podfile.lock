@@ -9,6 +9,9 @@ PODS:
     - React-Core (= 0.72.6)
     - React-jsi (= 0.72.6)
     - ReactCommon/turbomodule/core (= 0.72.6)
+  - Firebase/Auth (10.17.0):
+    - Firebase/CoreOnly
+    - FirebaseAuth (~> 10.17.0)
   - Firebase/CoreOnly (10.17.0):
     - FirebaseCore (= 10.17.0)
   - Firebase/Crashlytics (10.17.0):
@@ -17,6 +20,14 @@ PODS:
   - Firebase/Messaging (10.17.0):
     - Firebase/CoreOnly
     - FirebaseMessaging (~> 10.17.0)
+  - FirebaseAppCheckInterop (10.18.0)
+  - FirebaseAuth (10.17.0):
+    - FirebaseAppCheckInterop (~> 10.17)
+    - FirebaseCore (~> 10.0)
+    - GoogleUtilities/AppDelegateSwizzler (~> 7.8)
+    - GoogleUtilities/Environment (~> 7.8)
+    - GTMSessionFetcher/Core (< 4.0, >= 2.1)
+    - RecaptchaInterop (~> 100.0)
   - FirebaseCore (10.17.0):
     - FirebaseCoreInternal (~> 10.0)
     - GoogleUtilities/Environment (~> 7.8)
@@ -102,6 +113,7 @@ PODS:
     - GoogleUtilities/Logger
   - GoogleUtilities/UserDefaults (7.12.0):
     - GoogleUtilities/Logger
+  - GTMSessionFetcher/Core (3.1.1)
   - nanopb (2.30909.1):
     - nanopb/decode (= 2.30909.1)
     - nanopb/encode (= 2.30909.1)
@@ -502,11 +514,16 @@ PODS:
     - React-jsi (= 0.72.6)
     - React-logger (= 0.72.6)
     - React-perflogger (= 0.72.6)
+  - RecaptchaInterop (100.0.0)
   - RNCAsyncStorage (1.19.3):
     - React-Core
   - RNFBApp (18.6.1):
     - Firebase/CoreOnly (= 10.17.0)
     - React-Core
+  - RNFBAuth (18.7.1):
+    - Firebase/Auth (= 10.17.0)
+    - React-Core
+    - RNFBApp
   - RNFBCrashlytics (18.6.1):
     - Firebase/Crashlytics (= 10.17.0)
     - FirebaseCoreExtension (= 10.17.0)
@@ -575,6 +592,7 @@ DEPENDENCIES:
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
   - "RNCAsyncStorage (from `../node_modules/@react-native-async-storage/async-storage`)"
   - "RNFBApp (from `../node_modules/@react-native-firebase/app`)"
+  - "RNFBAuth (from `../node_modules/@react-native-firebase/auth`)"
   - "RNFBCrashlytics (from `../node_modules/@react-native-firebase/crashlytics`)"
   - "RNFBMessaging (from `../node_modules/@react-native-firebase/messaging`)"
   - RNKeychain (from `../node_modules/react-native-keychain`)
@@ -585,6 +603,8 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Firebase
+    - FirebaseAppCheckInterop
+    - FirebaseAuth
     - FirebaseCore
     - FirebaseCoreExtension
     - FirebaseCoreInternal
@@ -597,9 +617,11 @@ SPEC REPOS:
     - GoogleDataTransport
     - GoogleMaps
     - GoogleUtilities
+    - GTMSessionFetcher
     - nanopb
     - PromisesObjC
     - PromisesSwift
+    - RecaptchaInterop
     - SocketRocket
     - TrustKit
 
@@ -694,6 +716,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-async-storage/async-storage"
   RNFBApp:
     :path: "../node_modules/@react-native-firebase/app"
+  RNFBAuth:
+    :path: "../node_modules/@react-native-firebase/auth"
   RNFBCrashlytics:
     :path: "../node_modules/@react-native-firebase/crashlytics"
   RNFBMessaging:
@@ -713,6 +737,8 @@ SPEC CHECKSUMS:
   FBLazyVector: 748c0ef74f2bf4b36cfcccf37916806940a64c32
   FBReactNativeSpec: 966f29e4e697de53a3b366355e8f57375c856ad9
   Firebase: f4ac0b02927af9253ae094d23deecf0890da7374
+  FirebaseAppCheckInterop: 3cd914842ba46f4304050874cd284de82f154ffd
+  FirebaseAuth: 8d285d9f6e39cc8e23be53a4edd83a923ea629d8
   FirebaseCore: 534544dd98cabcf4bf8598d88ec683b02319a528
   FirebaseCoreExtension: 47720bb330d7041047c0935a34a3a4b92f818074
   FirebaseCoreInternal: 2cf9202e226e3f78d2bf6d56c472686b935bfb7f
@@ -726,6 +752,7 @@ SPEC CHECKSUMS:
   GoogleDataTransport: 54dee9d48d14580407f8f5fbf2f496e92437a2f2
   GoogleMaps: 032f676450ba0779bd8ce16840690915f84e57ac
   GoogleUtilities: 0759d1a57ebb953965c2dfe0ba4c82e95ccc2e34
+  GTMSessionFetcher: e8647203b65cee28c5f73d0f473d096653945e72
   nanopb: d4d75c12cd1316f4a64e3c6963f879ecd4b5e0d5
   PromisesObjC: c50d2056b5253dadbd6c2bea79b0674bd5a52fa4
   PromisesSwift: 28dca69a9c40779916ac2d6985a0192a5cb4a265
@@ -767,8 +794,10 @@ SPEC CHECKSUMS:
   React-runtimescheduler: 8f9a2cf6c90f35397e80f55eadbf2c0d8378101b
   React-utils: 1dc03e6e55f56388b6fdde3768a66c885bacb627
   ReactCommon: 6044a8a504865d312c1bff6d3ee0a500f7f32987
+  RecaptchaInterop: 7d1a4a01a6b2cb1610a47ef3f85f0c411434cb21
   RNCAsyncStorage: c913ede1fa163a71cea118ed4670bbaaa4b511bb
   RNFBApp: b43d4829366a5065e17f9af3b03a0c4890eaeb85
+  RNFBAuth: 35a09c1d70d1a13ae81ddcde47927feb4de7b9e4
   RNFBCrashlytics: 7456cc01ce08e6043dcfade9dbf5e28671887409
   RNFBMessaging: 7128ecb6542bdc317da0b5f899b987f1cebf15f4
   RNKeychain: a65256b6ca6ba6976132cc4124b238a5b13b3d9c
