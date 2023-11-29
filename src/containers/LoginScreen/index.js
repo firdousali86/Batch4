@@ -6,6 +6,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {userActions} from '../../features/user/userSlice';
 import {kApiUserLogin} from '../../config/WebService';
 import auth from '@react-native-firebase/auth';
+import {LoginButton, AccessToken} from 'react-native-fbsdk-next';
 
 const {request, success, failure} = userActions;
 
@@ -35,45 +36,63 @@ const LoginScreen = props => {
         }}
         style={{height: 40, backgroundColor: 'yellow', margin: 10}}
       />
-      <Button
-        title={'Login'}
-        onPress={async () => {
-          // PersistanceHelper.setObject('loginDetails', {username, password});
-          // dispatch(request({url: kApiUserLogin, data: {email, password}}));
 
-          // try {
-          //   const response = await ApiHelper.post(kApiUserLogin, {
-          //     email,
-          //     password,
-          //   });
+      <View style={{alignItems: 'center'}}>
+        <Button
+          title={'Login'}
+          onPress={async () => {
+            // PersistanceHelper.setObject('loginDetails', {username, password});
+            // dispatch(request({url: kApiUserLogin, data: {email, password}}));
 
-          //   dispatch(success(response));
+            // try {
+            //   const response = await ApiHelper.post(kApiUserLogin, {
+            //     email,
+            //     password,
+            //   });
 
-          //   setEmail('');
-          //   setPassword('');
-          // } catch (error) {
-          //   dispatch(failure(error));
-          // }
+            //   dispatch(success(response));
 
-          // EventRegister.emit('loginEvent', true);
+            //   setEmail('');
+            //   setPassword('');
+            // } catch (error) {
+            //   dispatch(failure(error));
+            // }
 
-          auth()
-            .signInWithEmailAndPassword(email, password)
-            .then(data => {
-              console.log(data);
-            })
-            .catch(err => {
-              console.log(err);
-            });
-        }}
-      />
+            // EventRegister.emit('loginEvent', true);
 
-      <Button
-        title={'Goto Signup'}
-        onPress={() => {
-          props.navigation.navigate('Signup');
-        }}
-      />
+            auth()
+              .signInWithEmailAndPassword(email, password)
+              .then(data => {
+                console.log(data);
+              })
+              .catch(err => {
+                console.log(err);
+              });
+          }}
+        />
+
+        <LoginButton
+          onLoginFinished={(error, result) => {
+            if (error) {
+              console.log('login has error: ' + result.error);
+            } else if (result.isCancelled) {
+              console.log('login is cancelled.');
+            } else {
+              AccessToken.getCurrentAccessToken().then(data => {
+                console.log(data.accessToken.toString());
+              });
+            }
+          }}
+          onLogoutFinished={() => console.log('logout.')}
+        />
+
+        <Button
+          title={'Goto Signup'}
+          onPress={() => {
+            props.navigation.navigate('Signup');
+          }}
+        />
+      </View>
 
       {user.isFetching && <ActivityIndicator />}
     </View>
