@@ -15,6 +15,7 @@ import * as Keychain from 'react-native-keychain';
 import {userActions} from '../../features/user/userSlice';
 import {useDispatch} from 'react-redux';
 import auth from '@react-native-firebase/auth';
+import {LoginManager} from 'react-native-fbsdk-next';
 
 const {logout} = userActions;
 
@@ -153,6 +154,8 @@ const DashboardScreen = props => {
           auth()
             .signOut()
             .then(() => console.log('User signed out!'));
+
+          LoginManager.logOut();
 
           // dispatch(logout());
           // PersistanceHelper.setObject('loginDetails', {});
