@@ -10,7 +10,20 @@ const TestNativeModuleScreen = () => {
       <Button
         title={'Hit'}
         onPress={() => {
-          CalendarModule.createCalendarEvent('testName', 'testLocation');
+          CalendarModule.createCalendarEvent1('testName', 'testLocation');
+        }}
+      />
+
+      <Button
+        title={'Hit with callback'}
+        onPress={() => {
+          CalendarModule.createCalendarEvent2(
+            'testName',
+            'testLocation',
+            arg => {
+              console.log(arg);
+            },
+          );
         }}
       />
     </View>
