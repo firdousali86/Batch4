@@ -26,6 +26,21 @@ const TestNativeModuleScreen = () => {
           );
         }}
       />
+
+      <Button
+        title={'Hit with promise'}
+        onPress={async () => {
+          try {
+            const eventId = await CalendarModule.createCalendarEvent3(
+              'Party',
+              'My House',
+            );
+            console.log(`Created a new event with id ${eventId}`);
+          } catch (e) {
+            console.error(e);
+          }
+        }}
+      />
     </View>
   );
 };

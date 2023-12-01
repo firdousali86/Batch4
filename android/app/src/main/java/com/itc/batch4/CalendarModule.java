@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.HashMap;
 import android.util.Log;
 import com.facebook.react.bridge.Callback;
+import com.facebook.react.bridge.Promise;
 
 public class CalendarModule extends ReactContextBaseJavaModule {
    CalendarModule(ReactApplicationContext context) {
@@ -31,5 +32,15 @@ public class CalendarModule extends ReactContextBaseJavaModule {
    + " and location: " + location + " and callback");
 
         callBack.invoke("some test arguement");
+    }
+
+    @ReactMethod
+    public void createCalendarEvent3(String name, String location, Promise promise) {
+    try {
+        Integer eventId = 34534;
+        promise.resolve(eventId);
+    } catch(Exception e) {
+        promise.reject("Create Event Error", e);
+    }
     }
 }
