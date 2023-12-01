@@ -17,6 +17,7 @@ import RTKQueryScreen from './RTKQueryScreen';
 import MapScreen from './MapScreen';
 import LocationTestScreen from './LocationTestScreen';
 import TestSSLPinning from './TestSSLPinning';
+import TestNativeModuleScreen from './TestNativeModuleScreen';
 
 export {
   DashboardScreen,
@@ -38,4 +39,5 @@ export {
   MapScreen,
   LocationTestScreen,
   TestSSLPinning,
+  TestNativeModuleScreen,
 };
