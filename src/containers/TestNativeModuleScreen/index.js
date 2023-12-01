@@ -1,9 +1,28 @@
-import {StyleSheet, Text, View, NativeModules, Button} from 'react-native';
-import React from 'react';
+import {
+  StyleSheet,
+  Text,
+  View,
+  NativeModules,
+  NativeEventEmitter,
+  Button,
+} from 'react-native';
+import React, {useEffect} from 'react';
 
 const {CalendarModule} = NativeModules;
 
 const TestNativeModuleScreen = () => {
+  useEffect(() => {
+    const eventEmitter = new NativeEventEmitter(NativeModules.CalendarModule);
+    let eventListener = eventEmitter.addListener('EventReminder', event => {
+      console.log(event.eventProperty); // "someValue"
+    });
+
+    // Removes the listener once unmounted
+    return () => {
+      eventListener.remove();
+    };
+  }, []);
+
   return (
     <View>
       <Text>TestNativeModuleScreen</Text>
@@ -39,6 +58,12 @@ const TestNativeModuleScreen = () => {
           } catch (e) {
             console.error(e);
           }
+        }}
+      />
+      <Button
+        title={'Hit an API and export broadcast'}
+        onPress={() => {
+          CalendarModule.createCalendarEvent4('testName', 'testLocation');
         }}
       />
     </View>

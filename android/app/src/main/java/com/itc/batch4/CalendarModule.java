@@ -9,6 +9,10 @@ import java.util.HashMap;
 import android.util.Log;
 import com.facebook.react.bridge.Callback;
 import com.facebook.react.bridge.Promise;
+import com.facebook.react.modules.core.DeviceEventManagerModule;
+import com.facebook.react.bridge.WritableMap;
+import com.facebook.react.bridge.Arguments;
+import androidx.annotation.Nullable;
 
 public class CalendarModule extends ReactContextBaseJavaModule {
    CalendarModule(ReactApplicationContext context) {
@@ -42,5 +46,21 @@ public class CalendarModule extends ReactContextBaseJavaModule {
     } catch(Exception e) {
         promise.reject("Create Event Error", e);
     }
+    }
+
+    @ReactMethod
+    public void createCalendarEvent4(String name, String location) {
+        WritableMap params = Arguments.createMap();
+        params.putString("eventProperty", "someValue");
+
+        sendEvent(this.getReactApplicationContext(), "EventReminder", params);
+    }
+
+    private void sendEvent(ReactContext reactContext,
+                      String eventName,
+                      @Nullable WritableMap params) {
+    reactContext
+     .getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
+     .emit(eventName, params);
     }
 }
