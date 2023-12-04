@@ -18,6 +18,7 @@ import MapScreen from './MapScreen';
 import LocationTestScreen from './LocationTestScreen';
 import TestSSLPinning from './TestSSLPinning';
 import TestNativeModuleScreen from './TestNativeModuleScreen';
+import FirestoreTestScreen from './FirestoreTestScreen';
 
 export {
   DashboardScreen,
@@ -40,4 +41,5 @@ export {
   LocationTestScreen,
   TestSSLPinning,
   TestNativeModuleScreen,
+  FirestoreTestScreen,
 };
