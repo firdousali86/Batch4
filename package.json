@@ -22,6 +22,7 @@
     "@react-navigation/native-stack": "^6.9.15",
     "@reduxjs/toolkit": "^1.9.7",
     "apisauce": "^3.0.1",
+    "crypto-js": "^4.2.0",
     "lodash": "^4.17.21",
     "react": "18.2.0",
     "react-hook-form": "^7.48.2",

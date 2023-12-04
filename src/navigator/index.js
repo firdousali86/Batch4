@@ -27,7 +27,7 @@ import {
 import {useSelector} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
 import {EventRegister} from 'react-native-event-listeners';
-import {PersistanceHelper, NotificationHelper} from '../helpers';
+import {PersistanceHelper, NotificationHelper, CryptoHelper} from '../helpers';
 import {addSslPinningErrorListener} from 'react-native-ssl-public-key-pinning';
 import auth from '@react-native-firebase/auth';
 
@@ -38,6 +38,26 @@ const Navigator = () => {
   const [user, setUser] = useState(undefined);
 
   useEffect(() => {
+    const encyptedstr = CryptoHelper.encryptString('hey, how r u');
+
+    console.log(encyptedstr);
+
+    const decryptedstr = CryptoHelper.decryptString(
+      encyptedstr,
+      'jjhg34jhg3jhg4',
+    );
+
+    console.log(decryptedstr);
+
+    const str1 =
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,";
+
+    const str2 =
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.";
+
+    console.log(CryptoHelper.generateSHA256(str1));
+    console.log(CryptoHelper.generateSHA256(str2));
+
     const subscription = addSslPinningErrorListener(error => {
       // Triggered when an SSL pinning error occurs due to pin mismatch
       console.log(error.serverHostname);
