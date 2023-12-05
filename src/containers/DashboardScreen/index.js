@@ -112,7 +112,7 @@ const DashboardScreen = props => {
         onPress={() => {
           props.navigation.navigate('Settings', {
             city,
-            country,
+            // country,
           });
         }}
         style={{

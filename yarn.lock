@@ -1708,6 +1708,11 @@
   resolved "https://registry.yarnpkg.com/@react-native-community/geolocation/-/geolocation-3.1.0.tgz#573881e9536d55cc2af74762183fa7ba575b2553"
   integrity sha512-Aj76wMeCLz9kczpe7W2IXxSRNj+hRR7sqyfXq9ZaJIWNH23jeJfzMpovclg+e1uM8Vr8jCYEcZyD4rKub6Vc/Q==
 
+"@react-native-community/netinfo@^11.1.1":
+  version "11.1.1"
+  resolved "https://registry.yarnpkg.com/@react-native-community/netinfo/-/netinfo-11.1.1.tgz#b25cb1547a0067460c48c5973ac280c531e59c3b"
+  integrity sha512-AoIcGL7WeXobSxMUz0ukXXCaQgIReR3xLfZJ/GTd3HN/iceuN6UvqAddfjxgqQWMcb6t2SfrjQnbUPfvattp/A==
+
 "@react-native-firebase/app@^18.6.1":
   version "18.7.1"
   resolved "https://registry.yarnpkg.com/@react-native-firebase/app/-/app-18.7.1.tgz#89fea18713a0fec9e2a0190a4be6b6c54208a73e"
