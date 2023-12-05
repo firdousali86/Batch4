@@ -1,0 +1,1 @@
+cp scripts/react-native-reanimated/animationBuilder.tsx node_modules/react-native-reanimated/src/
