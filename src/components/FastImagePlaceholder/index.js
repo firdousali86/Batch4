@@ -1,7 +1,11 @@
-// @flow
-import PropTypes from 'prop-types';
-import React from 'react';
-import {ActivityIndicator, Image, View, ViewPropTypes} from 'react-native';
+import React, {ReactNode, useEffect} from 'react';
+import {
+  ActivityIndicator,
+  Image,
+  View,
+  ViewStyle,
+  ImageSourcePropType,
+} from 'react-native';
 import FastImage from 'react-native-fast-image';
 
 import {Images} from '../../themes';
@@ -9,38 +13,34 @@ import styles from './styles';
 
 const placeholderImage = require('./placeholder.png');
 
-export default class FastImagePlaceholder extends React.Component {
-  static propTypes = {
-    containerStyle: ViewPropTypes.style,
-    placeHolder: PropTypes.any,
-    showLoader: PropTypes.bool,
-    cache: PropTypes.oneOf(['immutable', 'web', 'cacheOnly']),
-    priority: PropTypes.oneOf(['low', 'normal', 'high']),
-    resizeMode: PropTypes.oneOf(['contain', 'cover', 'stretch', 'center']),
-  };
+interface Props {
+  containerStyle?: ViewStyle;
+  placeHolder?: ImageSourcePropType;
+  showLoader?: boolean;
+  cache?: 'immutable' | 'web' | 'cacheOnly';
+  priority?: 'low' | 'normal' | 'high';
+  resizeMode?: 'contain' | 'cover' | 'stretch' | 'center';
+  source?: ImageSourcePropType;
+}
 
-  static defaultProps = {
-    containerStyle: {},
-    placeHolder: placeholderImage,
-    showLoader: true,
-    cache: 'immutable',
-    priority: 'normal',
-    resizeMode: 'cover',
-  };
+interface State {
+  isLoading: boolean;
+  isError: boolean;
+}
 
-  constructor(props) {
-    super(props);
+const FastImagePlaceholder: React.FC<Props> = ({
+  containerStyle = {},
+  placeHolder = placeholderImage,
+  showLoader = true,
+  cache = 'immutable',
+  priority = 'normal',
+  resizeMode = 'cover',
+  source,
+}) => {
+  const [isLoading, setIsLoading] = React.useState(false);
+  const [isError, setIsError] = React.useState(false);
 
-    this.state = {
-      isLoading: false,
-      isError: false,
-    };
-  }
-
-  renderLoader = () => {
-    const {isLoading} = this.state;
-    const {showLoader} = this.props;
-
+  const renderLoader = (): ReactNode => {
     if (isLoading && showLoader) {
       return (
         <View style={styles.imagePlaceholderContainer}>
@@ -52,10 +52,7 @@ export default class FastImagePlaceholder extends React.Component {
     return null;
   };
 
-  renderPlaceholder = () => {
-    const {placeHolder, source} = this.props;
-    const {isLoading, isError} = this.state;
-
+  const renderPlaceholder = (): ReactNode => {
     if (isLoading || isError || !(source && source.uri)) {
       return (
         <View
@@ -76,38 +73,32 @@ export default class FastImagePlaceholder extends React.Component {
     return null;
   };
 
-  render() {
-    const {containerStyle, source, priority, cache, resizeMode} = this.props;
+  useEffect(() => {
+    if (source && source.uri) {
+      setIsLoading(true);
+    }
+  }, [source]);
 
-    return (
-      <View style={[containerStyle, {overflow: 'hidden'}]}>
-        {this.renderPlaceholder()}
-        {source && source.uri && (
-          <FastImage
-            style={styles.imagePlaceholderContainer}
-            onLoadStart={() => {
-              this.setState({isLoading: true});
-            }}
-            onLoad={e => {
-              this.setState({isLoading: false});
-            }}
-            onLoadEnd={() => {
-              this.setState({isLoading: false});
-            }}
-            source={{
-              uri: source.uri,
-              priority: FastImage.priority[priority],
-              cache: FastImage.cacheControl[cache],
-            }}
-            onError={() => {
-              this.setState({isError: true});
-            }}
-            resizeMode={FastImage.resizeMode[resizeMode]}
-          />
-        )}
+  return (
+    <View style={[containerStyle, {overflow: 'hidden'}]}>
+      {renderPlaceholder()}
+      {source && source.uri && (
+        <FastImage
+          style={styles.imagePlaceholderContainer}
+          onLoad={() => setIsLoading(false)}
+          onError={() => setIsError(true)}
+          source={{
+            uri: source.uri,
+            priority: FastImage.priority[priority],
+            cache: FastImage.cacheControl[cache],
+          }}
+          resizeMode={FastImage.resizeMode[resizeMode]}
+        />
+      )}
 
-        {source && source.uri && this.renderLoader()}
-      </View>
-    );
-  }
-}
+      {source && source.uri && renderLoader()}
+    </View>
+  );
+};
+
+export default FastImagePlaceholder;
