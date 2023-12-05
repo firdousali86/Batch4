@@ -29,6 +29,7 @@ function App() {
     //   unsubscribe();
     // };
 
+    //we dont have any guarantee of redux loaded or not
     LogBox.ignoreAllLogs();
   }, []);
 
@@ -42,7 +43,9 @@ function App() {
     setIsLoading(false);
   };
 
-  const loadingCompleted = () => {};
+  const loadingCompleted = () => {
+    //here we do have guarantee that redux is now loaded
+  };
 
   return (
     <NavigationContainer>
