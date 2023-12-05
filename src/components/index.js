@@ -5,6 +5,8 @@ import UserProfile from './UserProfile';
 import InputComponent from './InputComponent';
 import GenderSelect from './GenderSelect';
 import MapViewControl from './MapViewControl';
+import AppStateN from './AppStateN';
+import FastImagePlaceholder from './FastImagePlaceholder';
 
 export {
   MyHOC,
@@ -14,4 +16,6 @@ export {
   InputComponent,
   GenderSelect,
   MapViewControl,
+  AppStateN,
+  FastImagePlaceholder,
 };

@@ -38,25 +38,25 @@ const Navigator = () => {
   const [user, setUser] = useState(undefined);
 
   useEffect(() => {
-    const encyptedstr = CryptoHelper.encryptString('hey, how r u');
+    // const encyptedstr = CryptoHelper.encryptString('hey, how r u');
 
-    console.log(encyptedstr);
+    // console.log(encyptedstr);
 
-    const decryptedstr = CryptoHelper.decryptString(
-      encyptedstr,
-      'jjhg34jhg3jhg4',
-    );
+    // const decryptedstr = CryptoHelper.decryptString(
+    //   encyptedstr,
+    //   'jjhg34jhg3jhg4',
+    // );
 
-    console.log(decryptedstr);
+    // console.log(decryptedstr);
 
-    const str1 =
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,";
+    // const str1 =
+    //   "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,";
 
-    const str2 =
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.";
+    // const str2 =
+    //   "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.";
 
-    console.log(CryptoHelper.generateSHA256(str1));
-    console.log(CryptoHelper.generateSHA256(str2));
+    // console.log(CryptoHelper.generateSHA256(str1));
+    // console.log(CryptoHelper.generateSHA256(str2));
 
     const subscription = addSslPinningErrorListener(error => {
       // Triggered when an SSL pinning error occurs due to pin mismatch
@@ -129,6 +129,11 @@ const Navigator = () => {
     return (
       <Stack.Group>
         <Stack.Screen
+          name="Dashboard"
+          component={DashboardScreen}
+          options={{title: 'Overview'}}
+        />
+        <Stack.Screen
           name="firestoreTestScreen"
           component={FirestoreTestScreen}
           options={{title: 'Firestore Test Screen'}}
@@ -139,11 +144,6 @@ const Navigator = () => {
           options={{title: 'Test Native Module Screen'}}
         />
 
-        <Stack.Screen
-          name="Dashboard"
-          component={DashboardScreen}
-          options={{title: 'Overview'}}
-        />
         <Stack.Screen
           name="testSSLPinning"
           component={TestSSLPinning}

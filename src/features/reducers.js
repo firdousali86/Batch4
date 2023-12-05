@@ -4,6 +4,7 @@ import item from './item/itemSlicer';
 import user from './user/userSlice';
 import movie from './movie/movieSlicer';
 import {itemApi} from '../services/itemApi';
+import appState from './appState/appStateSlice';
 
 export default {
   cart: cart,
@@ -12,4 +13,5 @@ export default {
   user: user,
   movie: movie,
   itemApi: itemApi.reducer,
+  appState: appState,
 };
