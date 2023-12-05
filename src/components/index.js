@@ -7,6 +7,7 @@ import GenderSelect from './GenderSelect';
 import MapViewControl from './MapViewControl';
 import AppStateN from './AppStateN';
 import FastImagePlaceholder from './FastImagePlaceholder';
+import Text from './Text';
 
 export {
   MyHOC,
@@ -18,4 +19,5 @@ export {
   MapViewControl,
   AppStateN,
   FastImagePlaceholder,
+  Text,
 };

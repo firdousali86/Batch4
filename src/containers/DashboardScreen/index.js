@@ -1,10 +1,9 @@
-import {useState, useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   SafeAreaView,
   View,
   FlatList,
   Image,
-  Text,
   TouchableOpacity,
   TextInput,
   Button,
@@ -16,6 +15,7 @@ import {userActions} from '../../features/user/userSlice';
 import {useDispatch} from 'react-redux';
 import auth from '@react-native-firebase/auth';
 import {LoginManager} from 'react-native-fbsdk-next';
+import {Text} from '../../components';
 
 const {logout} = userActions;
 
