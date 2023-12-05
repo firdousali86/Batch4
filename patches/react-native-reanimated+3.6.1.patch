@@ -1,0 +1,37 @@
+diff --git a/node_modules/react-native-reanimated/src/ConfigHelper.ts b/node_modules/react-native-reanimated/src/ConfigHelper.ts
+index c0f9691..d16900b 100644
+--- a/node_modules/react-native-reanimated/src/ConfigHelper.ts
++++ b/node_modules/react-native-reanimated/src/ConfigHelper.ts
+@@ -2,6 +2,7 @@
+ import { PropsAllowlists } from './propsAllowlists';
+ import { jsiConfigureProps } from './reanimated2/core';
+ function assertNoOverlapInLists() {
++  console.log("change 1")
+   for (const key in PropsAllowlists.NATIVE_THREAD_PROPS_WHITELIST) {
+     if (key in PropsAllowlists.UI_THREAD_PROPS_WHITELIST) {
+       throw new Error(
+@@ -12,6 +13,7 @@ function assertNoOverlapInLists() {
+ }
+ 
+ function configureProps(): void {
++  console.log("change 2")
+   assertNoOverlapInLists();
+   jsiConfigureProps(
+     Object.keys(PropsAllowlists.UI_THREAD_PROPS_WHITELIST),
+@@ -22,6 +24,7 @@ function configureProps(): void {
+ export function addWhitelistedNativeProps(
+   props: Record<string, boolean>
+ ): void {
++  console.log("change 3")
+   const oldSize = Object.keys(
+     PropsAllowlists.NATIVE_THREAD_PROPS_WHITELIST
+   ).length;
+@@ -48,6 +51,8 @@ export function addWhitelistedUIProps(props: Record<string, boolean>): void {
+   ) {
+     configureProps();
+   }
++
++  console.log("change 4")
+ }
+ 
+ const PROCESSED_VIEW_NAMES = new Set();
