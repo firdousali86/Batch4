@@ -17,3 +17,7 @@
   **[] $VALUES;
   public *;
 }
+
+-keepclassmembers class com.android.installreferrer.api.** {
+  *;
+}
