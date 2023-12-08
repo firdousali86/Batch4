@@ -77,7 +77,9 @@ const DashboardScreen = props => {
         flex: 1,
       }}>
       <ScrollView style={{flex: 1}} contentContainerStyle={{flex: 1}}>
-        <Text>{Config.ENV}</Text>
+        <Text type="karbon" size="xxLarge">
+          {Config.ENV}
+        </Text>
         <Text>{Config.API_URL}</Text>
         <View style={{height: 400, width: Metrics.screenWidth}}>
           <Suspense fallback={<Text>Loading...</Text>}>

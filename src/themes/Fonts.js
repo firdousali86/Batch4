@@ -34,6 +34,7 @@ const type = {
   normal: 'OpenSans-Regular',
   extraBold: 'OpenSans-ExtraBold',
   schoolBell: Platform.OS == 'ios' ? 'Schoolbell' : 'Schoolbell-pMMy',
+  karbon: 'Karbon',
 };
 
 // Metrics.generatedFontSize(ios, android)
