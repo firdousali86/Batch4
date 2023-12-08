@@ -8,7 +8,13 @@
     "lint": "eslint .",
     "start": "react-native start",
     "test": "jest",
-    "postinstall": "patch-package"
+    "postinstall": "patch-package",
+    "android:dev": "cd android && ./gradlew clean && cd .. && npx react-native run-android --variant=developmentDebug --appIdSuffix 'development'",
+    "android:dev-release": "cd android && ./gradlew clean && cd .. && npx react-native run-android --variant=developmentRelease --appIdSuffix 'development'",
+    "android:stage": "cd android && ./gradlew clean && cd .. && npx react-native run-android --variant=stagingDebug --appIdSuffix 'staging'",
+    "android:stage-release": "cd android && ./gradlew clean && cd .. && npx react-native run-android --variant=stagingRelease --appIdSuffix 'staging'",
+    "android:prod": "cd android && ./gradlew clean && cd .. && npx react-native run-android --variant=productionDebug --appIdSuffix 'production'",
+    "android:prod-release": "cd android && ./gradlew clean && cd .. && npx react-native run-android --variant=productionRelease --appIdSuffix 'production'"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.2",
@@ -31,6 +37,7 @@
     "react": "18.2.0",
     "react-hook-form": "^7.48.2",
     "react-native": "0.72.6",
+    "react-native-config": "^1.5.1",
     "react-native-device-info": "^10.12.0",
     "react-native-encrypted-storage": "^4.0.3",
     "react-native-event-listeners": "^1.0.7",

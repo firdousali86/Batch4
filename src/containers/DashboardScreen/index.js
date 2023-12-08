@@ -18,6 +18,7 @@ import auth from '@react-native-firebase/auth';
 import {LoginManager} from 'react-native-fbsdk-next';
 import {Text} from '../../components';
 import {Metrics} from '../../themes';
+import Config from 'react-native-config';
 
 const {logout} = userActions;
 
@@ -76,6 +77,8 @@ const DashboardScreen = props => {
         flex: 1,
       }}>
       <ScrollView style={{flex: 1}} contentContainerStyle={{flex: 1}}>
+        <Text>{Config.ENV}</Text>
+        <Text>{Config.API_URL}</Text>
         <View style={{height: 400, width: Metrics.screenWidth}}>
           <Suspense fallback={<Text>Loading...</Text>}>
             <MyHeavyComponent markers={markers} />
