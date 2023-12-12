@@ -19,6 +19,8 @@ import LocationTestScreen from './LocationTestScreen';
 import TestSSLPinning from './TestSSLPinning';
 import TestNativeModuleScreen from './TestNativeModuleScreen';
 import FirestoreTestScreen from './FirestoreTestScreen';
+import ReactTestScreen from './ReactTestScreen';
+import ReactTestScreen2 from './ReactTestScreen2';
 
 export {
   DashboardScreen,
@@ -42,4 +44,6 @@ export {
   TestSSLPinning,
   TestNativeModuleScreen,
   FirestoreTestScreen,
+  ReactTestScreen,
+  ReactTestScreen2,
 };

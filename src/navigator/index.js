@@ -23,6 +23,8 @@ import {
   TestSSLPinning,
   TestNativeModuleScreen,
   FirestoreTestScreen,
+  ReactTestScreen,
+  ReactTestScreen2,
 } from '../containers';
 import {useSelector} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
@@ -128,6 +130,17 @@ const Navigator = () => {
   const getMainStack = () => {
     return (
       <Stack.Group>
+        <Stack.Screen
+          name="reactTestScreen"
+          component={ReactTestScreen}
+          options={{title: 'ReactTestScreen'}}
+        />
+        <Stack.Screen
+          name="reactTestScreen2"
+          component={ReactTestScreen2}
+          options={{title: 'ReactTestScreen2'}}
+        />
+
         <Stack.Screen
           name="Dashboard"
           component={DashboardScreen}
