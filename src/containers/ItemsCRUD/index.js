@@ -1,19 +1,18 @@
-import {View, Text, FlatList} from 'react-native';
+import {View, Text, FlatList, Button} from 'react-native';
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {itemActions} from '../../features/item/itemSlicer';
-import {kApiGetItems} from '../../config/WebService';
+import {kApiGetItems, kApiTodos} from '../../config/WebService';
 import PostItemsForm from '../../controls/PostItemsForm';
+import {ScrollView} from 'react-native-gesture-handler';
 
-const {request, success, failure} = itemActions;
+const {request, requestEvery, requestLatest, success, failure} = itemActions;
 
 export default function ItemsCRUD() {
   const dispatch = useDispatch();
   const item = useSelector(state => state.item);
 
   useEffect(() => {
-    dispatch(request({url: kApiGetItems}));
-
     // ApiHelper.get(kApiGetItems)
     //   .then(response => {
     //     dispatch(success(response));
@@ -25,29 +24,25 @@ export default function ItemsCRUD() {
 
   return (
     <View style={{flex: 1}}>
-      <FlatList
-        data={item.items}
-        renderItem={({item, index}) => {
-          return (
-            <View
-              style={{
-                marginVertical: 5,
-                marginHorizontal: 10,
-                backgroundColor: 'pink',
-              }}>
-              <Text>{item.id}</Text>
-              <View
-                style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-                <Text>{item.title}</Text>
-                <Text>{item.details}</Text>
-              </View>
-
-              <Text>{item.image}</Text>
-            </View>
-          );
+      <Button
+        title="Take First"
+        onPress={() => {
+          dispatch(request({url: kApiTodos}));
         }}
       />
-      <PostItemsForm />
+
+      <Button
+        title="Take Every"
+        onPress={() => {
+          dispatch(requestEvery({url: kApiTodos}));
+        }}
+      />
+      <Button
+        title="Take Latest"
+        onPress={() => {
+          dispatch(requestLatest({url: kApiTodos}));
+        }}
+      />
     </View>
   );
 }
