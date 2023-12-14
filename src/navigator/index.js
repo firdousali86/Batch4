@@ -24,6 +24,7 @@ import {
   TestNativeModuleScreen,
   FirestoreTestScreen,
   TestIMScreen,
+  PubNubScreen,
 } from '../containers';
 import {useSelector} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
@@ -129,6 +130,11 @@ const Navigator = () => {
   const getMainStack = () => {
     return (
       <Stack.Group>
+        <Stack.Screen
+          name="pubNubScreen"
+          component={PubNubScreen}
+          options={{title: 'PubNubScreen'}}
+        />
         <Stack.Screen
           name="itemsCRUD"
           component={ItemsCRUD}

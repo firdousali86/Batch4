@@ -20,6 +20,7 @@ import TestSSLPinning from './TestSSLPinning';
 import TestNativeModuleScreen from './TestNativeModuleScreen';
 import FirestoreTestScreen from './FirestoreTestScreen';
 import TestIMScreen from './TestIMScreen';
+import PubNubScreen from './PubNubScreen';
 
 export {
   DashboardScreen,
@@ -44,4 +45,5 @@ export {
   TestNativeModuleScreen,
   FirestoreTestScreen,
   TestIMScreen,
+  PubNubScreen,
 };
