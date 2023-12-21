@@ -1,4 +1,4 @@
-import {useState, memo} from 'react';
+import React, {useState, memo} from 'react';
 import {View, Text, TextInput, TextComponent, Button} from 'react-native';
 import TestContext2 from './TestContext2';
 import TestContext5 from './TestContext5';
