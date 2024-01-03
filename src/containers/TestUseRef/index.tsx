@@ -1,15 +1,14 @@
 import {useState, useRef} from 'react';
 import {View, TextInput, Text, Button} from 'react-native';
-import UserBasicInfo from '../../components/UserBasicInfo';
 
-const TestUseRef = props => {
+const TestUseRef = () => {
   const [textInput, setTextInput] = useState('');
   const [textInput2, setTextInput2] = useState('');
 
   const [datevalue, setdatevalue] = useState(Date.now());
 
-  const input1Ref = useRef(null);
-  const input2Ref = useRef(null);
+  const input1Ref = useRef<TextInput>(null);
+  const input2Ref = useRef<TextInput>(null);
 
   let somevariable = useRef(0);
 
@@ -51,26 +50,26 @@ const TestUseRef = props => {
       <Button
         title={'Focus first textinput'}
         onPress={() => {
-          input1Ref.current.focus();
+          input1Ref?.current?.focus();
         }}
       />
       <Button
         title={'Focus second textinput'}
         onPress={() => {
-          input2Ref.current.focus();
+          input2Ref?.current?.focus();
         }}
       />
 
       <Button
         title={'Clear first textinput'}
         onPress={() => {
-          input1Ref.current.clear();
+          input1Ref?.current?.clear();
         }}
       />
       <Button
         title={'Clear second textinput'}
         onPress={() => {
-          input2Ref.current.clear();
+          input2Ref?.current?.clear();
         }}
       />
     </View>

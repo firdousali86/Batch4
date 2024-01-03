@@ -1,4 +1,4 @@
-import {useEffect} from 'react';
+import React, {useEffect} from 'react';
 import {View, Text, TouchableOpacity, Button} from 'react-native';
 import * as Keychain from 'react-native-keychain';
 import {PersistanceHelper} from '../../helpers';

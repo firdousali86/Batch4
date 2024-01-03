@@ -5,7 +5,23 @@ import UserBasicInfo from '../UserBasicInfo';
 import UserContactInfo from '../UserContactInfo';
 import UserAddressInfo from '../UserAddressInfo';
 
-const UserProfile = props => {
+type UserProfileProps = {
+  userData: UserData;
+  inputStyle: any;
+};
+
+type UserData = {
+  firstName: string;
+  lastName: string;
+  phone: string;
+  email: string;
+  city: string;
+  country: string;
+  postal: string;
+  street: string;
+};
+
+const UserProfile: React.FC<UserProfileProps> = (props: UserProfileProps) => {
   const [backColor, setBackColor] = useState('yellow');
 
   const {userData, inputStyle} = props;
@@ -21,7 +37,7 @@ const UserProfile = props => {
         firstName={firstName}
         lastName={lastName}
         bgColor={backColor}
-        colorChangeCB={requestedColor => {
+        colorChangeCB={(requestedColor: string) => {
           setBackColor(requestedColor);
         }}
       />

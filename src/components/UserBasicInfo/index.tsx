@@ -1,7 +1,17 @@
 import {useState} from 'react';
 import {View, Text, TextInput, TouchableOpacity} from 'react-native';
 
-const UserBasicInfo = props => {
+type UserBasicInfoProps = {
+  inputStyle: any;
+  firstName: string;
+  lastName: string;
+  bgColor: string;
+  colorChangeCB: (color: string) => void;
+};
+
+const UserBasicInfo: React.FC<UserBasicInfoProps> = (
+  props: UserBasicInfoProps,
+) => {
   let {inputStyle, firstName, lastName, bgColor, colorChangeCB} = props;
 
   return (
