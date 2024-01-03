@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import {Text, View, Button} from 'react-native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {
   DashboardScreen,
   SettingScreen,
@@ -34,6 +36,9 @@ import {addSslPinningErrorListener} from 'react-native-ssl-public-key-pinning';
 import auth from '@react-native-firebase/auth';
 
 const Stack = createNativeStackNavigator();
+const StackA = createNativeStackNavigator();
+const StackB = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
 
 const Navigator = () => {
   // const user = useSelector(state => state.user);
@@ -117,6 +122,33 @@ const Navigator = () => {
   );
 
   const navigation = useNavigation();
+
+  const MyTabs = () => {
+    return (
+      <Tab.Navigator>
+        <Tab.Screen name="TabA" component={StackANavigator} />
+        <Tab.Screen name="TabB" component={StackBNavigator} />
+      </Tab.Navigator>
+    );
+  };
+
+  const StackANavigator = () => {
+    return (
+      <StackA.Navigator>
+        <StackA.Screen name={'dashboard'} component={DashboardScreen} />
+        <StackA.Screen name={'Settings'} component={SettingScreen} />
+      </StackA.Navigator>
+    );
+  };
+
+  const StackBNavigator = () => {
+    return (
+      <StackA.Navigator>
+        <StackA.Screen name={'PubNubScreen'} component={PubNubScreen} />
+        <StackA.Screen name={'TestIMScreen'} component={TestIMScreen} />
+      </StackA.Navigator>
+    );
+  };
 
   const getAuthStack = () => {
     return (
@@ -280,7 +312,7 @@ const Navigator = () => {
       </Stack.Group>
     );
   };
-
+  return MyTabs();
   return (
     <Stack.Navigator>{true ? getMainStack() : getAuthStack()}</Stack.Navigator>
   );
